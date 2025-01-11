@@ -2,7 +2,7 @@ import "./index.css";
 
 export const FrontPage = () => {
   return (
-    <div id="FrontPage" className="page-section">
+    <div id="Home" className="page-section">
       <div className="section-content">
         <h1 className="title">
           Hi! I&apos;m Matteo 👋

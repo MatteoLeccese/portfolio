@@ -45,7 +45,12 @@ main {
 }
 
 .page-section {
-  margin-top: 64px;
+  padding: 64px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
 
   .section-content {
     max-width: 980px;
@@ -53,8 +58,12 @@ main {
   }
 }
 
+.light-page {
+  background-color: #111826;
+}
+
 h1, h2, h3, h4, h5, h6, p, span, a {
-  font-family: 'Montserrat';
+  font-family: Montserrat, Montserrat Fallback;
 }
 
 @media (prefers-color-scheme: dark) {
