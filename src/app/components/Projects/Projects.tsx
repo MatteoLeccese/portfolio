@@ -23,7 +23,7 @@ const projects: IProjectData[] = [
 
 export const Projects = () => {
   return (
-    <div id="Projects" className="page-section light-page">
+    <div id="Projects" className="page-section">
       <div className="section-content">
         <div className="section-presentation">
           <p className="section-text">

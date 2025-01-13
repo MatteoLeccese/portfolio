@@ -30,19 +30,3 @@
     }
   }
 }
-
-@media screen and (width <= 768px) {
-  #Skills {
-    .section-content {
-      .skills-section {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        margin: 10px 0px;
-
-        div:nth-last-child(1) {
-          grid-column: span 3; justify-self: center;
-        }
-      }
-    }
-  }  
-}
