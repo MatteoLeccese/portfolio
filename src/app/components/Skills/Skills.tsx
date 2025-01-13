@@ -27,10 +27,6 @@ export const Skills = () => {
           The skills, tools, and technologies I am really good at:
         </p>
         <div className="skills-section">
-          
-        </div>
-        
-        <div className="skills-section">
           {skills.map(({ name, link, source }) => (
             <div key={name} className="flex flex-col items-center gap-2">
               <a target="_blank" rel="noopener noreferrer" href={link}>

@@ -1,0 +1,48 @@
+#Projects {
+  .section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+
+    .section-presentation {
+      background-color: #374152;
+      padding: 7px 20px;
+      border-radius: 20px;
+
+      .section-text {
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+
+    .section-description {
+      font-size: 20px;
+      font-weight: 500;
+      margin: 15px 0px;
+    }
+
+    .projects-section {
+      width: 100%;
+      .project {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (width <= 768px) {
+  #Skills {
+    .section-content {
+      .skills-section {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin: 10px 0px;
+
+        div:nth-last-child(1) {
+          grid-column: span 3; justify-self: center;
+        }
+      }
+    }
+  }  
+}
