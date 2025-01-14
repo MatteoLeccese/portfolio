@@ -1,5 +1,15 @@
+"use client";
 import Image from "next/image";
 import "./index.css";
+
+const downloadCVPdf = () => {
+  const link = document.createElement('a'); 
+  link.href = '/pdf/cv_matteo_leccese.pdf';
+  link.download = 'cv_matteo_leccese.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 
 export const Navbar = () => {
   return (
@@ -37,7 +47,7 @@ export const Navbar = () => {
             </a>
           </li>
           <li>
-            <button className="pdf-button">
+            <button className="pdf-button" onClick={() => downloadCVPdf()}>
               Download PDF
             </button>
           </li>
