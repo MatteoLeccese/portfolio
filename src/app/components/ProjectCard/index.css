@@ -1,0 +1,164 @@
+.project-card {
+  background-color: #1f2a38;
+  border-radius: 20px;
+  display: flex;
+  margin: 40px 0px;
+  flex-direction: row-reverse;
+  box-shadow: #1c1c1c 1px 1px 5px 1px;
+  flex: 1;
+
+  .image-container {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 0px;
+    padding: 30px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #374152;
+
+    .project-logo {
+      width: 100%;
+      height: auto;
+      max-width: 480px;
+      max-height: 480px;
+      object-fit: contain;
+      margin: auto;
+    }
+  }
+
+  .project-container {
+    padding: 30px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+  
+    .project-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+  
+    .project-description {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 22px;
+      letter-spacing: 0.4px;
+    }
+  
+    .technologies-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+  
+      .technology-container {
+        background-color: #374152;
+        padding: 7px 20px;
+        border-radius: 20px;
+  
+        .technology-text {
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+    }
+  
+    a {
+      border-radius: 8px;
+      height: 35px;
+      padding: 5px;
+      width: 35px;
+
+      svg {
+        margin: auto;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    a:hover {
+      background-color: #171f2abc;
+    }
+  }
+}
+
+@media screen and (width <= 968px) {
+  .project-card {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+
+    .image-container {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      padding: 30px;
+      width: 100%;
+    }
+  
+    .project-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    
+      .project-title {
+        font-size: 18px;
+        letter-spacing: 0.35px;
+      }
+    
+      .project-description {
+        font-size: 15px;
+        line-height: 20px;
+        letter-spacing: 0.3px;
+      }
+    
+      .technologies-container {
+        gap: 8px;
+      }
+    }
+  }  
+}
+
+@media screen and (width <= 400px) {
+  .project-card {
+    margin: 20px auto;
+    width: 90%;
+    .image-container {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      padding: 20px;
+      width: 100%;
+    }
+  
+    .project-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 20px;
+    
+      .project-title {
+        font-size: 16px;
+        letter-spacing: 0.3px;
+      }
+    
+      .project-description {
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0px;
+      }
+    
+      .technologies-container {
+        gap: 6px;
+      }
+    }
+  }  
+}

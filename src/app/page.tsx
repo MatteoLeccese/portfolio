@@ -1,4 +1,4 @@
-import { About } from "@/app/components/About/About";
+import { Contact } from "@/app/components/Contact/Contact";
 import { FrontPage } from "@/app/components/FrontPage/FrontPage";
 import { Projects } from "@/app/components/Projects/Projects";
 import { Skills } from "@/app/components/Skills/Skills";
@@ -11,7 +11,7 @@ export default function Home() {
       <Work />
       <Projects />
       <Skills />
-      <About />
+      <Contact />
     </main>
   );
 }
