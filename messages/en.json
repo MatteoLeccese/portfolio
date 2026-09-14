@@ -1,0 +1,182 @@
+{
+  "About": {
+    "factExperience": "{years} years of experience",
+    "factLanguages": "English and Spanish",
+    "factLocation": "Based in {location}",
+    "factRole": "{role} @ {company}",
+    "factRoleNone": "Between roles",
+    "paragraphOne": "I'm a {role} with {years} years of experience building scalable web platforms and backend systems. I currently work in financial technology, where I integrate payment providers, maintain the core financial backend and its REST APIs, and take applications all the way to production on cloud infrastructure.",
+    "paragraphThree": "I work with AI agents every day — Claude Code and Antigravity — and I treat what they produce like any other contribution: it goes through the same specification, the same tests and the same review before it ships. I'm based in {location} and I work in English and Spanish.",
+    "paragraphTwo": "My day to day is React, Next.js, Node.js and NestJS on one side, PHP and Laravel on the other, with a relational database underneath. What I optimise for is data integrity, database performance, and an architecture the next developer can pick up without me in the room.",
+    "subtitle": "The short version.",
+    "title": "About me"
+  },
+  "Common": {
+    "copied": "Copied",
+    "copy": "Copy",
+    "current": "Current",
+    "downloadCv": "Download CV",
+    "downloadCvAria": "Download my CV as a PDF ({language})",
+    "externalLink": "opens in a new tab",
+    "present": "Present",
+    "showAll": "Show all {count} responsibilities",
+    "showLess": "Show less",
+    "stack": "Stack"
+  },
+  "Contact": {
+    "channels": {
+      "githubLabel": "GitHub",
+      "linkedinLabel": "LinkedIn",
+      "title": "Or reach me directly"
+    },
+    "errors": {
+      "email_invalid": "I need a valid email address to reply to.",
+      "email_send_failed": "The message could not be delivered. <mail>Write to me at {ownerEmail}</mail> and it will reach me.",
+      "email_too_long": "That email address is too long.",
+      "internal_error": "Something broke on my side. Try again, or <mail>write to {ownerEmail}</mail>.",
+      "message_too_long": "2000 characters maximum.",
+      "message_too_short": "A little more context, please — 20 characters minimum.",
+      "name_too_long": "80 characters maximum.",
+      "name_too_short": "Please enter your name — two characters minimum.",
+      "spam_rejected": "That submission looked automated. Please try again.",
+      "subject_too_long": "120 characters maximum.",
+      "subject_too_short": "Give it a subject — three characters minimum.",
+      "too_many_requests": "You have sent several messages already. Try again in an hour.",
+      "validation_error": "Some fields need fixing before this can be sent."
+    },
+    "form": {
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@company.com",
+      "honeypot": "Leave this field empty",
+      "messageCounter": "{count} / {max}",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell me what you're working on.",
+      "nameLabel": "Name",
+      "namePlaceholder": "Your name",
+      "privacyNotice": "Your message reaches me by email. Nothing is stored on this site. <privacy>Privacy policy</privacy>.",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "What is this about?",
+      "submit": "Send message",
+      "submitting": "Sending…"
+    },
+    "status": {
+      "successAgain": "Send another message",
+      "successBody": "Thanks for writing. I'll reply as soon as I can.",
+      "successTitle": "Message sent."
+    },
+    "subtitle": "Have a role, a project or a question? Send it here and I'll get back to you.",
+    "title": "Contact"
+  },
+  "Cv": {
+    "education": "Education",
+    "experience": "Work Experience",
+    "profile": "About Me",
+    "skills": "Skills"
+  },
+  "Education": {
+    "subtitle": "Where the fundamentals came from.",
+    "title": "Education"
+  },
+  "Errors": {
+    "boundaryBody": "This section failed to render. Reloading usually fixes it.",
+    "boundaryRetry": "Try again",
+    "boundaryTitle": "Something went wrong"
+  },
+  "Experience": {
+    "current": "Current position",
+    "responsibilities": "Responsibilities",
+    "subtitle": "{years} years, {companies} teams, and the same priority throughout: systems other people can maintain.",
+    "title": "Experience"
+  },
+  "Footer": {
+    "builtWith": "Built with Next.js, Tailwind CSS and shadcn/ui.",
+    "cookieNotice": "This site stores one cookie, and only if you use the theme switch: your light or dark preference. No analytics, no tracking, no third parties.",
+    "cookies": "Cookie policy",
+    "legalNavLabel": "Legal",
+    "privacy": "Privacy policy",
+    "rights": "© {year} {name}. All rights reserved."
+  },
+  "Hero": {
+    "betweenRoles": "Between roles — open to what's next.",
+    "currentRole": "{role} at {company}",
+    "greeting": "Hi, I'm",
+    "headline": "I build web platforms and backend systems that hold up in production.",
+    "primaryCta": "Get in touch",
+    "scrollCue": "Scroll to the About section",
+    "secondaryCta": "See my experience",
+    "summary": "{years} years across React, Next.js, Node.js, NestJS, PHP and Laravel — currently in fintech, where payment integrations, monetary precision and data integrity are not optional."
+  },
+  "Legal": {
+    "backToHome": "Back to home",
+    "cookieTableCaption": "Cookies this site can store",
+    "lastUpdated": "Last updated {date}",
+    "tableCookieDuration": "Duration",
+    "tableCookieName": "Name",
+    "tableCookieProvider": "Provider",
+    "tableCookiePurpose": "Purpose",
+    "tableCookieType": "Type"
+  },
+  "Locale": {
+    "en": "English",
+    "es": "Español",
+    "label": "Language",
+    "switchTo": "Switch to {language}"
+  },
+  "Meta": {
+    "cookiesDescription": "The one cookie this site stores, when it is stored, and how to remove it.",
+    "cookiesTitle": "Cookie policy",
+    "description": "{role} with {years} years of experience building web platforms and backend systems in fintech, with React, Next.js, Node.js, NestJS, PHP and Laravel.",
+    "privacyDescription": "What this site does, and does not do, with your data.",
+    "privacyTitle": "Privacy policy",
+    "title": "{name} — {role}"
+  },
+  "Nav": {
+    "about": "About",
+    "closeMenu": "Close menu",
+    "contact": "Contact",
+    "education": "Education",
+    "experience": "Experience",
+    "homeLabel": "{name} — back to top",
+    "mobileLabel": "Mobile navigation",
+    "openMenu": "Open menu",
+    "primaryLabel": "Main navigation",
+    "projects": "Projects",
+    "skills": "Skills",
+    "skipToContent": "Skip to content"
+  },
+  "OpenGraph": {
+    "chipOne": "Fintech",
+    "chipThree": "AI-assisted",
+    "chipTwo": "REST APIs",
+    "imageAlt": "Social card showing the name {name}, the role {role} and three tags: Fintech, REST APIs, AI-assisted.",
+    "role": "{role} · {location}",
+    "tagline": "Payment platforms, REST APIs and the releases that put them in production."
+  },
+  "Projects": {
+    "emptyBody": "I'd rather show three projects worth reading than ten that fill a grid. The ones I'm building are not finished yet, so nothing is published here. For now, my work history and my GitHub are the honest version.",
+    "emptyKicker": "In progress",
+    "emptyPrimaryCta": "Read my work history",
+    "emptySecondaryCta": "Browse my GitHub",
+    "emptyTitle": "This section is deliberately empty.",
+    "subtitle": "Selected work.",
+    "title": "Projects"
+  },
+  "Skills": {
+    "aiIntro": "AI agents are part of my daily workflow. They are not a shortcut around engineering — the specification, the tests and the review stay exactly where they were.",
+    "aiPracticeOne": "<term>Spec before code</term> — I write down what has to be true before an agent touches the repository, so the output can be judged instead of trusted.",
+    "aiPracticeThree": "<term>Review on every diff</term> — I read every line that goes in. Agents parallelise the work; they do not take over the responsibility.",
+    "aiPracticeTwo": "<term>Tests as the contract</term> — Automated tests decide whether a change ships. That rule does not change depending on who, or what, wrote it.",
+    "aiTooling": "Day to day: Claude Code, Antigravity, and splitting larger jobs across parallel agents when the work genuinely divides.",
+    "categoryAi": "AI-assisted development",
+    "categoryBackend": "Backend",
+    "categoryData": "Databases",
+    "categoryFrontend": "Frontend",
+    "categoryPlatform": "Platform & tooling",
+    "subtitle": "How I work, and what I work with.",
+    "title": "Skills"
+  },
+  "Theme": {
+    "toDark": "Switch to dark theme",
+    "toLight": "Switch to light theme"
+  }
+}

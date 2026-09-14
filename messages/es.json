@@ -1,0 +1,182 @@
+{
+  "About": {
+    "factExperience": "{years} años de experiencia",
+    "factLanguages": "Inglés y español",
+    "factLocation": "Desde {location}",
+    "factRole": "{role} @ {company}",
+    "factRoleNone": "Entre proyectos",
+    "paragraphOne": "Soy {role} con {years} años de experiencia construyendo plataformas web escalables y sistemas backend. Actualmente trabajo en tecnología financiera, donde integro proveedores de pago, mantengo el backend financiero central y sus APIs REST, y llevo las aplicaciones hasta producción sobre infraestructura en la nube.",
+    "paragraphThree": "Trabajo a diario con agentes de IA —Claude Code y Antigravity— y trato lo que producen como cualquier otra contribución: pasa por la misma especificación, las mismas pruebas y la misma revisión antes de llegar a producción. Vivo en {location} y trabajo en inglés y español.",
+    "paragraphTwo": "Mi día a día es React, Next.js, Node.js y NestJS por un lado, PHP y Laravel por el otro, con una base de datos relacional debajo. Lo que optimizo es la integridad de los datos, el rendimiento de la base de datos y una arquitectura que el siguiente desarrollador pueda retomar sin que yo esté delante.",
+    "subtitle": "La versión corta.",
+    "title": "Sobre mí"
+  },
+  "Common": {
+    "copied": "Copiado",
+    "copy": "Copiar",
+    "current": "Actual",
+    "downloadCv": "Descargar CV",
+    "downloadCvAria": "Descargar mi CV en PDF ({language})",
+    "externalLink": "se abre en una pestaña nueva",
+    "present": "Presente",
+    "showAll": "Ver las {count} responsabilidades",
+    "showLess": "Ver menos",
+    "stack": "Stack"
+  },
+  "Contact": {
+    "channels": {
+      "githubLabel": "GitHub",
+      "linkedinLabel": "LinkedIn",
+      "title": "O escríbeme directamente"
+    },
+    "errors": {
+      "email_invalid": "Necesito un correo electrónico válido para responderte.",
+      "email_send_failed": "El mensaje no se pudo entregar. <mail>Escríbeme a {ownerEmail}</mail> y me llega igual.",
+      "email_too_long": "Ese correo electrónico es demasiado largo.",
+      "internal_error": "Algo falló de mi lado. Inténtalo de nuevo o <mail>escríbeme a {ownerEmail}</mail>.",
+      "message_too_long": "Máximo 2000 caracteres.",
+      "message_too_short": "Un poco más de contexto, por favor: mínimo 20 caracteres.",
+      "name_too_long": "Máximo 80 caracteres.",
+      "name_too_short": "Escribe tu nombre: mínimo dos caracteres.",
+      "spam_rejected": "El envío parecía automático. Vuelve a intentarlo.",
+      "subject_too_long": "Máximo 120 caracteres.",
+      "subject_too_short": "Ponle un asunto: mínimo tres caracteres.",
+      "too_many_requests": "Ya has enviado varios mensajes. Inténtalo de nuevo dentro de una hora.",
+      "validation_error": "Hay campos que corregir antes de enviarlo."
+    },
+    "form": {
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "tu@empresa.com",
+      "honeypot": "Deja este campo vacío",
+      "messageCounter": "{count} / {max}",
+      "messageLabel": "Mensaje",
+      "messagePlaceholder": "Cuéntame en qué estás trabajando.",
+      "nameLabel": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "privacyNotice": "Tu mensaje me llega por correo. Aquí no se almacena nada. <privacy>Política de privacidad</privacy>.",
+      "subjectLabel": "Asunto",
+      "subjectPlaceholder": "¿De qué se trata?",
+      "submit": "Enviar mensaje",
+      "submitting": "Enviando…"
+    },
+    "status": {
+      "successAgain": "Enviar otro mensaje",
+      "successBody": "Gracias por escribir. Te respondo en cuanto pueda.",
+      "successTitle": "Mensaje enviado."
+    },
+    "subtitle": "¿Tienes una vacante, un proyecto o una pregunta? Escríbeme y te respondo.",
+    "title": "Contacto"
+  },
+  "Cv": {
+    "education": "Educación",
+    "experience": "Experiencia Profesional",
+    "profile": "Perfil Profesional",
+    "skills": "Habilidades"
+  },
+  "Education": {
+    "subtitle": "De dónde vienen los fundamentos.",
+    "title": "Educación"
+  },
+  "Errors": {
+    "boundaryBody": "Esta sección no se pudo renderizar. Normalmente se arregla recargando.",
+    "boundaryRetry": "Reintentar",
+    "boundaryTitle": "Algo salió mal"
+  },
+  "Experience": {
+    "current": "Puesto actual",
+    "responsibilities": "Responsabilidades",
+    "subtitle": "{years} años, {companies} equipos y la misma prioridad de principio a fin: sistemas que otros puedan mantener.",
+    "title": "Experiencia"
+  },
+  "Footer": {
+    "builtWith": "Hecho con Next.js, Tailwind CSS y shadcn/ui.",
+    "cookieNotice": "Este sitio guarda una sola cookie, y sólo si usas el interruptor de tema: tu preferencia de claro u oscuro. Sin analítica, sin rastreo, sin terceros.",
+    "cookies": "Política de cookies",
+    "legalNavLabel": "Legal",
+    "privacy": "Política de privacidad",
+    "rights": "© {year} {name}. Todos los derechos reservados."
+  },
+  "Hero": {
+    "betweenRoles": "Entre proyectos — abierto a lo que venga.",
+    "currentRole": "{role} en {company}",
+    "greeting": "Hola, soy",
+    "headline": "Construyo plataformas web y sistemas backend que aguantan en producción.",
+    "primaryCta": "Hablemos",
+    "scrollCue": "Ir a la sección Sobre mí",
+    "secondaryCta": "Ver mi experiencia",
+    "summary": "{years} años entre React, Next.js, Node.js, NestJS, PHP y Laravel — hoy en fintech, donde las integraciones de pago, la precisión monetaria y la integridad de los datos no son opcionales."
+  },
+  "Legal": {
+    "backToHome": "Volver al inicio",
+    "cookieTableCaption": "Cookies que este sitio puede guardar",
+    "lastUpdated": "Última actualización: {date}",
+    "tableCookieDuration": "Duración",
+    "tableCookieName": "Nombre",
+    "tableCookieProvider": "Proveedor",
+    "tableCookiePurpose": "Finalidad",
+    "tableCookieType": "Tipo"
+  },
+  "Locale": {
+    "en": "English",
+    "es": "Español",
+    "label": "Idioma",
+    "switchTo": "Cambiar a {language}"
+  },
+  "Meta": {
+    "cookiesDescription": "La única cookie que guarda este sitio, cuándo se guarda y cómo borrarla.",
+    "cookiesTitle": "Política de cookies",
+    "description": "{role} con {years} años de experiencia construyendo plataformas web y sistemas backend en fintech, con React, Next.js, Node.js, NestJS, PHP y Laravel.",
+    "privacyDescription": "Qué hace y qué no hace este sitio con tus datos.",
+    "privacyTitle": "Política de privacidad",
+    "title": "{name} — {role}"
+  },
+  "Nav": {
+    "about": "Sobre mí",
+    "closeMenu": "Cerrar menú",
+    "contact": "Contacto",
+    "education": "Educación",
+    "experience": "Experiencia",
+    "homeLabel": "{name} — volver arriba",
+    "mobileLabel": "Navegación móvil",
+    "openMenu": "Abrir menú",
+    "primaryLabel": "Navegación principal",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "skipToContent": "Saltar al contenido"
+  },
+  "OpenGraph": {
+    "chipOne": "Fintech",
+    "chipThree": "Asistido por IA",
+    "chipTwo": "APIs REST",
+    "imageAlt": "Tarjeta social con el nombre {name}, el rol {role} y tres etiquetas: Fintech, APIs REST, Asistido por IA.",
+    "role": "{role} · {location}",
+    "tagline": "Plataformas de pago, APIs REST y las publicaciones que las llevan a producción."
+  },
+  "Projects": {
+    "emptyBody": "Prefiero enseñar tres proyectos que merezcan una lectura antes que diez que rellenen una cuadrícula. Los que estoy construyendo aún no están terminados, así que aquí no hay nada publicado. Por ahora, mi experiencia y mi GitHub son la versión honesta.",
+    "emptyKicker": "En preparación",
+    "emptyPrimaryCta": "Leer mi trayectoria",
+    "emptySecondaryCta": "Ver mi GitHub",
+    "emptyTitle": "Esta sección está vacía a propósito.",
+    "subtitle": "Trabajo seleccionado.",
+    "title": "Proyectos"
+  },
+  "Skills": {
+    "aiIntro": "Los agentes de IA forman parte de mi trabajo diario. No son un atajo para saltarse la ingeniería: la especificación, las pruebas y la revisión siguen exactamente donde estaban.",
+    "aiPracticeOne": "<term>Especificación antes que código</term> — Escribo qué tiene que ser cierto antes de que un agente toque el repositorio, para poder juzgar el resultado en lugar de confiar en él.",
+    "aiPracticeThree": "<term>Revisión en cada diff</term> — Leo cada línea que entra. Los agentes paralelizan el trabajo; no asumen la responsabilidad.",
+    "aiPracticeTwo": "<term>Las pruebas como contrato</term> — Las pruebas automatizadas deciden si un cambio llega a producción. Esa regla no cambia según quién, o qué, lo haya escrito.",
+    "aiTooling": "En el día a día: Claude Code, Antigravity y repartir los trabajos grandes entre agentes en paralelo cuando la tarea de verdad se divide.",
+    "categoryAi": "Desarrollo asistido por IA",
+    "categoryBackend": "Backend",
+    "categoryData": "Bases de datos",
+    "categoryFrontend": "Frontend",
+    "categoryPlatform": "Plataforma y herramientas",
+    "subtitle": "Cómo trabajo y con qué.",
+    "title": "Habilidades"
+  },
+  "Theme": {
+    "toDark": "Cambiar a tema oscuro",
+    "toLight": "Cambiar a tema claro"
+  }
+}

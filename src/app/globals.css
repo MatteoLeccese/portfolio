@@ -1,0 +1,578 @@
+/* src/app/globals.css */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ===========================================================================
+   1. DIAL DE MARCA — el ÚNICO bloque que se toca para cambiar la marca.
+   =========================================================================== */
+:root {
+  --brand-h: 155;
+  --brand-c: 1;
+  --neutral-h: var(--brand-h);
+  --neutral-c: 1;
+}
+
+/* ===========================================================================
+   2. CAPA 1 — PRIMITIVAS
+   =========================================================================== */
+:root {
+  --brand-50:  oklch(0.980 calc(0.016 * var(--brand-c)) var(--brand-h));
+  --brand-100: oklch(0.955 calc(0.036 * var(--brand-c)) var(--brand-h));
+  --brand-200: oklch(0.912 calc(0.072 * var(--brand-c)) var(--brand-h));
+  --brand-300: oklch(0.855 calc(0.108 * var(--brand-c)) var(--brand-h));
+  --brand-400: oklch(0.780 calc(0.140 * var(--brand-c)) var(--brand-h));
+  --brand-500: oklch(0.700 calc(0.148 * var(--brand-c)) var(--brand-h));
+  --brand-600: oklch(0.618 calc(0.140 * var(--brand-c)) var(--brand-h));
+  --brand-700: oklch(0.530 calc(0.120 * var(--brand-c)) var(--brand-h));
+  --brand-800: oklch(0.448 calc(0.098 * var(--brand-c)) var(--brand-h));
+  --brand-900: oklch(0.390 calc(0.082 * var(--brand-c)) var(--brand-h));
+  --brand-950: oklch(0.268 calc(0.058 * var(--brand-c)) var(--brand-h));
+
+  --neutral-0:   oklch(1 0 0);
+  --neutral-50:  oklch(0.985 calc(0.004 * var(--neutral-c)) var(--neutral-h));
+  --neutral-100: oklch(0.965 calc(0.006 * var(--neutral-c)) var(--neutral-h));
+  --neutral-200: oklch(0.925 calc(0.008 * var(--neutral-c)) var(--neutral-h));
+  --neutral-300: oklch(0.875 calc(0.010 * var(--neutral-c)) var(--neutral-h));
+  --neutral-400: oklch(0.780 calc(0.012 * var(--neutral-c)) var(--neutral-h));
+  --neutral-500: oklch(0.640 calc(0.013 * var(--neutral-c)) var(--neutral-h));
+  --neutral-600: oklch(0.520 calc(0.013 * var(--neutral-c)) var(--neutral-h));
+  --neutral-700: oklch(0.420 calc(0.012 * var(--neutral-c)) var(--neutral-h));
+  --neutral-800: oklch(0.300 calc(0.010 * var(--neutral-c)) var(--neutral-h));
+  --neutral-900: oklch(0.212 calc(0.009 * var(--neutral-c)) var(--neutral-h));
+  --neutral-950: oklch(0.150 calc(0.008 * var(--neutral-c)) var(--neutral-h));
+
+  /* El rojo de error NO sigue al dial: un error debe seguir siendo rojo. */
+  --danger-400: oklch(0.700 0.170 27);
+  --danger-500: oklch(0.520 0.190 27);
+  --danger-950: oklch(0.200 0.070 27);
+}
+
+/* ===========================================================================
+   3. CAPA 2 — SEMÁNTICOS · CLARO (DEFAULT)
+   =========================================================================== */
+:root {
+  color-scheme: light;
+
+  --background: var(--neutral-50);
+  --foreground: var(--neutral-900);
+  --card: var(--neutral-0);
+  --card-foreground: var(--neutral-900);
+  --popover: var(--neutral-0);
+  --popover-foreground: var(--neutral-900);
+
+  --primary: var(--brand-700);
+  --primary-foreground: var(--neutral-0);
+  --primary-hover: var(--brand-800);
+  --primary-active: var(--brand-900);
+
+  --secondary: var(--neutral-100);
+  --secondary-foreground: var(--neutral-900);
+  --muted: var(--neutral-100);
+  --muted-foreground: var(--neutral-600);
+  --accent: var(--brand-100);
+  --accent-foreground: var(--brand-800);
+  --accent-hover: var(--brand-200);
+
+  --destructive: var(--danger-500);
+  --destructive-foreground: var(--neutral-0);
+
+  --border: var(--neutral-200);
+  --border-strong: var(--neutral-300);
+  --hairline: var(--neutral-200);
+  --input: var(--neutral-500);
+  --ring: var(--brand-600);
+
+  --overlay: oklch(0 0 0 / 0.35);
+  --selection: var(--brand-200);
+  --selection-foreground: var(--neutral-900);
+  --theme-color: var(--background);
+
+  --radius: 0.75rem;
+
+  --elevation-1: 0 1px 2px -1px oklch(0 0 0 / 0.08), 0 1px 3px 0 oklch(0 0 0 / 0.05);
+  --elevation-2: 0 2px 4px -2px oklch(0 0 0 / 0.08), 0 6px 16px -4px oklch(0 0 0 / 0.08);
+}
+
+/* ===========================================================================
+   4. CAPA 2 — SEMÁNTICOS · OSCURO
+   =========================================================================== */
+.dark {
+  color-scheme: dark;
+
+  --background: var(--neutral-950);
+  --foreground: var(--neutral-50);
+  --card: var(--neutral-900);
+  --card-foreground: var(--neutral-50);
+  --popover: var(--neutral-900);
+  --popover-foreground: var(--neutral-50);
+
+  --primary: var(--brand-400);
+  --primary-foreground: var(--brand-950);
+  --primary-hover: var(--brand-300);
+  --primary-active: var(--brand-200);
+
+  --secondary: var(--neutral-800);
+  --secondary-foreground: var(--neutral-50);
+  --muted: var(--neutral-800);
+  --muted-foreground: var(--neutral-400);
+  --accent: var(--brand-950);
+  --accent-foreground: var(--brand-300);
+  --accent-hover: var(--brand-900);
+
+  --destructive: var(--danger-400);
+  --destructive-foreground: var(--danger-950);
+
+  --border: var(--neutral-800);
+  --border-strong: var(--neutral-700);
+  --hairline: var(--neutral-800);
+  --input: var(--neutral-600);
+  --ring: var(--brand-400);
+
+  --overlay: oklch(0 0 0 / 0.65);
+  --selection: var(--brand-900);
+  --selection-foreground: var(--neutral-50);
+  --theme-color: var(--background);
+
+  /* Una sombra negra sobre #090c0a es invisible: el nivel lo marca el hairline luminoso. */
+  --elevation-1: 0 1px 2px -1px oklch(0 0 0 / 0.60), 0 0 0 1px oklch(1 0 0 / 0.04);
+  --elevation-2: 0 2px 4px -2px oklch(0 0 0 / 0.60), 0 8px 24px -8px oklch(0 0 0 / 0.70), 0 0 0 1px oklch(1 0 0 / 0.06);
+}
+
+/* ===========================================================================
+   5. PUENTE A TAILWIND — @theme inline (theme-reactive)
+   =========================================================================== */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-hover: var(--accent-hover);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-hairline: var(--hairline);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-overlay: var(--overlay);
+
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+  --color-brand-950: var(--brand-950);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.35);
+  --radius-2xl: calc(var(--radius) * 1.75);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --shadow-elevation-1: var(--elevation-1);
+  --shadow-elevation-2: var(--elevation-2);
+}
+
+/* ===========================================================================
+   6. ESCALAS ESTÁTICAS — @theme plano (no dependen del tema)
+
+   TIPOGRAFÍA — RECALIBRADA PARA MONTSERRAT (antes Inter).
+   Todos los números de abajo salen de métricas medidas, no de intuición:
+   capsize (node_modules/next/dist/server/capsize-font-metrics.json) para las dos
+   familias, y fontTools sobre src/lib/assets/fonts/Montserrat-Variable.ttf
+   instanciado en wght=400 para los avances por glifo.
+
+                                Inter Regular        Montserrat Regular
+     unitsPerEm                   2048                 1000
+     altura de x                  1118 = 0.5459em       525 = 0.5250em   (-3,8 %)
+     altura de mayúscula          1490 = 0.7275em       700 = 0.7000em   (-3,8 %)
+     ancho medio (subset latino)   978 = 0.4775em       503 = 0.5030em   (+5,3 %)
+     ascent / descent           0.9688 / -0.2412     0.9680 / -0.2510
+     caja de línea                1.2100em             1.2190em
+
+   Tres consecuencias, y las tres se pagan en este bloque:
+
+   1. MENOS ALTURA DE X -> el mismo número de px se ve más pequeño. Para igualar
+      la altura de x que daba Inter a 16px (8,73px) Montserrat necesita
+      16 x 0.5459/0.5250 = 16,6px. El cuerpo sube a 17px (1.0625rem), que deja la
+      x en 8,93px: un pelo por encima de lo que había, que es exactamente lo que
+      pide una geométrica en párrafo largo (la sección de experiencia son muchos
+      bullets seguidos, es el caso que manda).
+
+   2. MÁS ANCHA -> se descuadra la MEDIDA. A 17px el carácter medio ocupa
+      0.5030 x 17 = 8,55px, frente a los 0.4775 x 16 = 7,64px de Inter: +12 % por
+      carácter. Los 40rem (640px) que tenía --container-readable daban 84
+      caracteres por línea con Inter (ya estaba fuera de la banda 60-75) y darían
+      75 justos con Montserrat. Baja a 36.5rem = 584px = 68 caracteres por línea,
+      centro de la banda.
+
+   3. CAJA DE LÍNEA CASI IDÉNTICA (1.2190em vs 1.2100em) -> los line-height se
+      pueden seguir leyendo como ratios comparables; lo que cambia es que ahora
+      multiplican un cuerpo mayor, así que el interlineado ABSOLUTO sube en todos
+      los escalones aunque el ratio baje en alguno.
+
+   POR QUÉ LA MEDIDA VA EN rem Y NO EN ch
+   `ch` es el avance del glifo "0", que en Montserrat 400 mide 0.6620em, mientras
+   que el carácter medio mide 0.5030em: 1ch = 1,316 caracteres reales. La
+   intuición "65ch = 65 caracteres" daría 86. El equivalente exacto de los 68
+   caracteres de aquí serían 52ch — pero se descarta igual, porque `ch` se
+   resuelve contra la fuente que esté pintada EN ESE MOMENTO: hasta que carga
+   Montserrat manda el fallback Arial que genera next/font con
+   size-adjust = 0.5030/0.4458 = 112,83 %, cuyo "0" queda en 0.556 x 1.1283 =
+   0.6273em, un 5,5 % más estrecho que el de Montserrat. La columna cambiaría de
+   ancho en el swap y los párrafos se re-partirían en líneas distintas: justo el
+   CLS que `adjustFontFallback` mata en src/lib/fonts.ts. En rem la columna no se
+   mueve, y además sigue respetando el tamaño de fuente del usuario (si el
+   navegador va a 20px, 36.5rem = 730px y siguen siendo 68 caracteres por línea).
+
+   TRACKING — Montserrat es geométrica y de espaciado ancho (la "M" mide
+   0.955em). La rampa es monótona con el tamaño, cuanto más grande más negativo,
+   y se invierte en el texto pequeño:
+     display -0.045 · h2 -0.03 · h3 -0.02 · lead -0.01 · body 0 ·
+     meta +0.005 · eyebrow +0.12 (va en mayúsculas: las cajas geométricas se
+     empastan si no se abren, pero 0.14em ya era demasiado para esta familia).
+
+   MOBILE FIRST — cada clamp está resuelto para que el término medio valga el
+   mínimo a 360px y el máximo a 1280px: la escala no salta ni se queda plana en
+   el tramo de móvil. A 360px el hueco útil son 318,6px (gutter 20,7px), o sea
+   37 caracteres por línea de cuerpo; a 400px, 42. Es el techo físico del móvil,
+   no un fallo de la medida: --container-readable no llega a morder hasta 584px.
+   =========================================================================== */
+@theme {
+  /* --font-montserrat lo declara `next/font/local` en src/lib/fonts.ts sobre
+     <html>. NO se declara aquí como --font-sans directamente: son el mismo
+     elemento y la misma especificidad, y quién gana dependería del orden de
+     inyección de CSS, que Next no garantiza. Con nombres distintos esto es una
+     cadena, no un ciclo. El name table del .woff2 dice "Montserrat Thin" (la
+     instancia por defecto de la variable de Google es wght=100): da igual, con
+     next/font/local el nombre de familia lo pone Next, no el fichero.
+
+     El segundo argumento de var() NO es redundante. Si --font-montserrat no
+     estuviera declarada (layout sin `sans.variable`, o los dos nombres
+     divergiendo), la sustitucion de var() falla y con ella se invalida el VALOR
+     ENTERO de --font-sans, lista de reserva incluida: `font-family:
+     var(--font-sans)` quedaria invalido en tiempo de computo y el <body>
+     heredaria el font-family inicial, que en todos los navegadores es una SERIF
+     (Times New Roman). Con el fallback dentro del var() el fallo degrada a la
+     pila del sistema, que es el modo de fallo que este bloque dice tener. */
+  --font-sans: var(--font-montserrat, ui-sans-serif), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  /* Eyebrow — 13px. Sube de 12px porque va en MAYÚSCULAS y la mayúscula de
+     Montserrat mide 0.70em: a 12px eran 8,4px de altura de caja, por debajo del
+     umbral en el que una geométrica sigue siendo legible de un vistazo. A 13px
+     son 9,1px. Peso 600 y no 500: el trazo de Montserrat 500 a este tamaño se
+     deshilacha. line-height 1.25 y no 1.2 para que un eyebrow de dos líneas en
+     móvil no se pegue consigo mismo (mayúsculas: no hay descendentes, pero sí
+     tildes). */
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.25;
+  --text-eyebrow--letter-spacing: 0.12em;
+  --text-eyebrow--font-weight: 600;
+
+  /* Display — 40px (360px) -> 72px (1280px). El tramo se alarga respecto al
+     anterior (llegaba al máximo ya en 993px): Montserrat es un 5,3 % más ancha,
+     así que el mismo cuerpo ocupa más línea y el titular tiene que crecer más
+     despacio para no partirse antes de tiempo. line-height 1.0 y no 0.96: la
+     ascendente de Montserrat (0.968em) sobresale mucho de la mayúscula
+     (0.700em) y a 0.96 un titular de dos líneas se toca. -0.045em es el tracking
+     que le quita a las mayúsculas geométricas el aire que a este tamaño sobra. */
+  --text-display: clamp(2.5rem, 1.72rem + 3.48vw, 4.5rem);
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.045em;
+  --text-display--font-weight: 600;
+
+  /* H2 — 28px -> 44px, máximo también a 1280px. 1.15 de interlineado porque el
+     caso real de móvil es un título de sección de dos líneas a 360px. */
+  --text-h2: clamp(1.75rem, 1.36rem + 1.74vw, 2.75rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h2--font-weight: 600;
+
+  /* H3 — 21px -> 26px. Sube de 20px: con el cuerpo en 17px, un h3 de 20px eran
+     1,18x el cuerpo y la jerarquía no se leía. A 21px son 1,24x. */
+  --text-h3: clamp(1.3125rem, 1.19rem + 0.54vw, 1.625rem);
+  --text-h3--line-height: 1.3;
+  --text-h3--letter-spacing: -0.02em;
+  --text-h3--font-weight: 600;
+
+  /* Lead — 19px -> 22px. Tenía que subir por fuerza: su mínimo anterior (17px)
+     es ahora el cuerpo. El ratio baja de 1.6 a 1.55 y aun así el interlineado
+     absoluto sube (17 x 1.6 = 27,2px -> 19 x 1.55 = 29,45px): a mayor cuerpo,
+     menos ratio hace falta. En --container-readable son 61 caracteres a 19px y
+     53 a 22px; un lead es un párrafo de entrada corto y ahí 50-60 es lo que se
+     quiere, pero no se le debe meter texto largo. */
+  --text-lead: clamp(1.1875rem, 1.11rem + 0.33vw, 1.375rem);
+  --text-lead--line-height: 1.55;
+  --text-lead--letter-spacing: -0.01em;
+
+  /* Cuerpo — 17px / 1.75. Los dos números suben: el tamaño un 6,25 % (paridad de
+     altura de x, ver arriba) y el ratio de 1.7 a 1.75, lo que deja el
+     interlineado absoluto en 29,75px frente a los 27,2px de antes (+9,4 %). El
+     extra de aire es lo que compensa que las letras de Montserrat sean más
+     anchas y redondas; se lo puede permitir precisamente porque la medida baja
+     de 84 a 68 caracteres — con la línea larga de antes, 1.75 habría roto el
+     párrafo en franjas. Tracking 0 explícito, no ausente: así la utilidad
+     `text-body` RESETEA cualquier tracking heredado de un contenedor. */
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.75;
+  --text-body--letter-spacing: 0em;
+
+  /* Meta — 14px / 1.5. Sube de 13px por el mismo factor de altura de x que el
+     cuerpo (13 x 1.04 = 13,5 -> 14). El +0.005em NO es el tracking de mayúsculas
+     del eyebrow: es la compensación óptica mínima que pide cualquier geométrica
+     por debajo de 15px, donde los contornos redondos se cierran. Es para cadenas
+     cortas (fechas, etiquetas, pies): un párrafo de meta a lo ancho de
+     --container-readable daría 83 caracteres por línea y se saldría de la banda. */
+  --text-meta: 0.875rem;
+  --text-meta--line-height: 1.5;
+  --text-meta--letter-spacing: 0.005em;
+
+  --spacing: 0.25rem;
+  --spacing-touch: 2.75rem;
+  --spacing-gutter: clamp(1.25rem, 0.9rem + 1.75vw, 2.5rem);
+  --spacing-section: clamp(4.5rem, 3rem + 7.5vw, 8rem);
+
+  --container-page: 72rem;
+  /* La MEDIDA del sitio: 584px / (0.5030 x 17px) = 68,3 caracteres por línea.
+     Es el max-width de cualquier columna de texto corrido — se consume como
+     `max-w-readable`. Si una sección mete párrafos o bullets dentro de un
+     contenedor más ancho (--container-page son 72rem = 135 caracteres), la
+     medida se pierde aunque este token esté bien: hay que aplicarlo al bloque de
+     texto, no sólo al shell de la página. */
+  --container-readable: 36.5rem;
+
+  --header-height: 4rem;
+}
+
+/* ===========================================================================
+   7. TOKENS DE MOVIMIENTO — fuente de verdad. Propiedad de §7.4.
+   Espejo en TypeScript: src/lib/motion/tokens.ts
+   La paridad la verifica src/lib/motion/tokens.test.ts (falla el build si divergen).
+   Van en `:root` y NO en el `@theme` plano del bloque 6: los alias del puente
+   necesitan `@theme inline` para emitir `var(--motion-*)` en vez de copiar el valor.
+   =========================================================================== */
+:root {
+  --motion-duration-instant: 80ms;
+  --motion-duration-fast: 140ms;
+  --motion-duration-base: 220ms;
+  --motion-duration-slow: 380ms;
+  --motion-duration-slower: 560ms;
+
+  --motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --motion-ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+  --motion-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --motion-distance-xs: 4px;
+  --motion-distance-sm: 8px;
+  --motion-distance-md: 16px;
+  --motion-distance-lg: 24px;
+
+  --motion-stagger-tight: 40ms;
+  --motion-stagger-base: 60ms;
+  --motion-stagger-loose: 90ms;
+}
+
+/* Puente hacia las utilidades de Tailwind. `inline` hace que la utilidad emita
+   var(--motion-*) directamente: hay UNA sola declaración de cada valor. Sin estos
+   alias no se generan ease-standard / ease-entrance / ease-exit / ease-loop. */
+@theme inline {
+  --ease-standard: var(--motion-ease-standard);
+  --ease-entrance: var(--motion-ease-entrance);
+  --ease-exit: var(--motion-ease-exit);
+  --ease-loop: var(--motion-ease-in-out);
+
+  --default-transition-duration: var(--motion-duration-base);
+  --default-transition-timing-function: var(--motion-ease-standard);
+}
+
+/* Tailwind 4.3.3 no tiene namespace `--duration-*`: las duraciones con nombre
+   se declaran como utilidades. `--tw-duration` las hace componer con
+   `transition`, `motion-safe:` y `motion-reduce:`; sin esa variable la utilidad
+   pinta la duración pero no participa en la composición (§7.3.5). */
+@utility duration-instant {
+  --tw-duration: var(--motion-duration-instant);
+  transition-duration: var(--motion-duration-instant);
+}
+
+@utility duration-fast {
+  --tw-duration: var(--motion-duration-fast);
+  transition-duration: var(--motion-duration-fast);
+}
+
+@utility duration-base {
+  --tw-duration: var(--motion-duration-base);
+  transition-duration: var(--motion-duration-base);
+}
+
+@utility duration-slow {
+  --tw-duration: var(--motion-duration-slow);
+  transition-duration: var(--motion-duration-slow);
+}
+
+@utility duration-slower {
+  --tw-duration: var(--motion-duration-slower);
+  transition-duration: var(--motion-duration-slower);
+}
+
+/* ===========================================================================
+   8. UTILIDADES DE PROYECTO
+   =========================================================================== */
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: var(--container-page);
+  padding-inline: max(var(--spacing-gutter), env(safe-area-inset-left), env(safe-area-inset-right));
+}
+
+@utility section-y {
+  padding-block: var(--spacing-section);
+}
+
+@utility scroll-mt-header {
+  scroll-margin-top: calc(var(--header-height) + 1rem);
+}
+
+@utility touch-target {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    width: max(100%, var(--spacing-touch));
+    height: max(100%, var(--spacing-touch));
+  }
+}
+
+@utility hairline-t {
+  border-top: 1px solid var(--hairline);
+}
+
+@utility hairline-b {
+  border-bottom: 1px solid var(--hairline);
+}
+
+/* El campo trampa del formulario de contacto (§10.5). NO es la receta sr-only:
+   el campo tiene que quedar FUERA del flujo y fuera de la ventana, no leído por
+   nadie. El <form> lleva `relative` para que este `left` se resuelva contra él. */
+@utility honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ===========================================================================
+   9. BASE
+   =========================================================================== */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height) + 1rem);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    /* Explícito, y no heredado: el 0 del cuerpo es una decisión de §6, no la
+       ausencia de una. Sin esta línea el `letter-spacing: 0em` del token sólo
+       existiría dentro de la utilidad `text-body`. */
+    letter-spacing: var(--text-body--letter-spacing);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-synthesis-weight: none;
+    overflow-wrap: break-word;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    text-wrap: balance;
+  }
+
+  p, li {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--selection);
+    color: var(--selection-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  :where(button, [role="button"], a, input, select, textarea, summary):focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Corta las transiciones durante un frame al cambiar de tema. El atributo lo pone y lo quita
+     ThemeToggle sobre <html> (src/components/theme/ThemeToggle.tsx). Es un atributo y no una
+     clase para que nunca colisione con una utilidad de Tailwind. */
+  [data-theme-switching] *,
+  [data-theme-switching] *::before,
+  [data-theme-switching] *::after {
+    transition: none !important;
+  }
+
+  /* NO hay reset global de movimiento aquí. El clásico
+     `*, *::before, *::after { animation-duration: 0.01ms !important }` está
+     DELIBERADAMENTE ausente (§7.8): su `!important` sobre `*` anularía las 24
+     anulaciones por componente de §7.8 y haría fallar tokens.test.ts, que
+     prohíbe cualquier duración de transición literal en este fichero.
+     `prefers-reduced-motion` se atiende regla a regla, no con una maza. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* ===========================================================================
+   10. MOVIMIENTO — propiedad de §7.
+   El bloque `@layer components` con las reglas de revelado, escalonado,
+   estados del formulario y barrido de tema se añade aquí, al final del
+   fichero. Consume los tokens --motion-* declarados en el bloque 7.
+   =========================================================================== */
