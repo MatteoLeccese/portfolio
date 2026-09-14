@@ -14,6 +14,9 @@ import { THEME_COLOR_SRGB } from "@/lib/palette-srgb";
 import { MOTION_BOOT_SCRIPT } from "@/lib/motion/reveal-observer";
 import { sans } from "@/lib/fonts";
 import { ScrollSentinel } from "./_components/ScrollSentinel";
+import { SkipLink } from "./_components/SkipLink";
+import { SiteHeader } from "./_components/SiteHeader";
+import { SiteFooter } from "./_components/SiteFooter";
 
 /**
  * The home route's URLs: absolute, with no trailing slash except on the root, prefixed
@@ -146,6 +149,11 @@ export default async function LocaleLayout ({
             no node, so it does not take the first-focusable-element slot.
           */}
           <ScrollSentinel />
+
+          {/* The first focusable element of the document, before the header. */}
+          <SkipLink />
+          <SiteHeader />
+
           <main id="main" tabIndex={-1}>
             {/*
               1 px sentinel watched by ScrollSentinel. It lives in the layout and not in
@@ -154,6 +162,9 @@ export default async function LocaleLayout ({
             <div id="scroll-sentinel" aria-hidden="true" className="h-px" />
             {children}
           </main>
+
+          {/* A sibling of <main>, so it is the document's contentinfo landmark. */}
+          <SiteFooter />
         </NextIntlClientProvider>
       </body>
     </html>
