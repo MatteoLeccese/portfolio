@@ -1,8 +1,8 @@
 // src/domains/core/config/navigation.ts
 
 /**
- * The seven sections of the one-page, in render order. The array IS the order: the
- * scroll-spy, the nav and the section headings all read it instead of repeating the list.
+ * The sections of the one-page site, in render order. The scroll-spy, the nav and the
+ * section headings all read this array.
  */
 export const SECTION_IDS = [
   "hero",
@@ -16,7 +16,7 @@ export const SECTION_IDS = [
 
 export type SectionId = (typeof SECTION_IDS)[ number ];
 
-/** Everything but the hero: the hero is reached with the home link, not with a nav entry. */
+/** The section ids that get a nav entry: every section except the hero. */
 export const NAV_SECTION_IDS = SECTION_IDS.filter(
   (id): id is Exclude<SectionId, "hero"> => id !== "hero",
 );

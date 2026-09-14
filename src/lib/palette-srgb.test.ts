@@ -6,13 +6,12 @@ import { describe, expect, it } from "vitest";
 import { PALETTE_SRGB, THEME_COLOR_SRGB } from "./palette-srgb";
 
 /**
- * Parity between the sRGB mirror and the real palette.
+ * Parity between the sRGB mirror in palette-srgb.ts and the real palette.
  *
- * This test does NOT hold a second copy of the hexes: it parses src/app/globals.css, resolves
- * the dial → layer 1 → layer 2 chain exactly as the browser would, converts the resulting
- * oklch to sRGB with the same gamut mapping as scripts/check-contrast.ts, and compares.
- * A mirror that repeated the values by hand could drift from the CSS without anyone noticing,
- * which is the only failure this file exists to catch (§6.5.3, §11.4.3).
+ * Nothing here holds a second copy of the hexes: src/app/globals.css is parsed, the
+ * dial → primitive → semantic chain is resolved exactly as the browser would, and the
+ * resulting colour is converted to sRGB with the same gamut mapping as
+ * scripts/check-contrast.ts before being compared.
  */
 
 type Family = "brand" | "neutral" | "danger";
@@ -81,8 +80,8 @@ function dial (name: string): number {
   return Number(raw);
 }
 
-// Module constants: @stylistic/wrap-regex demands parentheses around a regex literal used as
-// the object of a member expression, and extracting them reads better than wrapping in place.
+// Extracted as module constants: @stylistic/wrap-regex demands parentheses around a regex
+// literal used as the object of a member expression.
 const NEUTRAL_FOLLOWS_BRAND = /--neutral-h\s*:\s*var\(--brand-h\)/;
 const PRIMITIVE = /--(brand|neutral|danger)-(\d+)\s*:\s*oklch\(\s*([0-9.]+)\s+(?:calc\(\s*([0-9.]+)\s*\*\s*var\(--(?:brand|neutral)-c\)\s*\)|([0-9.]+))\s+(?:var\(--(?:brand|neutral)-h\)|([0-9.]+))\s*\)\s*;/g;
 const DECLARATION = /--([a-z0-9-]+)\s*:\s*var\(--([a-z0-9-]+)\)\s*;/g;
@@ -131,8 +130,9 @@ const LIGHT = semanticMap(/:root\s*\{([\s\S]*?)\n\}/g);
 const DARK = new Map([ ...LIGHT, ...semanticMap(/\n\.dark\s*\{([\s\S]*?)\n\}/g) ]);
 
 /**
- * Follows --token -> var(--other) until it lands on a layer 1 primitive, so an alias of an
- * alias (--theme-color: var(--background) -> var(--neutral-50)) resolves like in the browser.
+ * Follows --token -> var(--other) until it lands on a primitive, so an alias of an alias
+ * (--theme-color: var(--background) -> var(--neutral-50)) resolves like in the browser.
+ * Gives up after 8 hops.
  */
 function hexOf (theme: ThemeName, token: string): string {
   const map = theme === "light" ? LIGHT : DARK;
@@ -163,8 +163,8 @@ const THEMES: readonly ThemeName[] = [ "light", "dark" ];
 
 describe("palette-srgb parity with globals.css", () => {
   it("actually parsed the palette out of globals.css", () => {
-    // Guards against the real failure mode of a parsing test: a regex that stops matching,
-    // finds nothing, and turns every assertion below into a vacuous pass.
+    // Guards against a regex that stops matching, finds nothing, and turns every assertion
+    // below into a vacuous pass.
     expect(primitives.size).toBeGreaterThanOrEqual(26);
     expect(LIGHT.size).toBeGreaterThanOrEqual(20);
     expect(DARK.size).toBeGreaterThanOrEqual(20);
@@ -180,8 +180,8 @@ describe("palette-srgb parity with globals.css", () => {
     });
   }
 
-  // --theme-color is an alias of --background in both blocks (§6.12). Anchoring it here is
-  // what keeps <meta name="theme-color"> and the page background from drifting apart.
+  // --theme-color is an alias of --background in both blocks, which is what keeps
+  // <meta name="theme-color"> and the page background from drifting apart.
   for (const theme of THEMES) {
     it(`THEME_COLOR_SRGB.${theme} matches --theme-color in ${theme}`, () => {
       expect(THEME_COLOR_SRGB[ theme ]).toBe(hexOf(theme, "theme-color"));

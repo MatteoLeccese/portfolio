@@ -6,20 +6,18 @@ const isProduction = process.env.NODE_ENV === "production";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  // Next injects inline bootstrap scripts. A nonce would force dynamic rendering
-  // and kill full SSG. Rationale and migration criteria live in section 10.
-  // 'unsafe-eval' is DEV ONLY: the Turbopack runtime and React Refresh evaluate
-  // hot modules. Without it, `next dev` boots with HMR blocked by our own CSP.
+  // 'unsafe-inline' covers the inline bootstrap scripts Next injects. 'unsafe-eval' is
+  // added outside production only, for the Turbopack runtime and React Refresh.
   `script-src 'self' 'unsafe-inline'${isProduction ? "" : " 'unsafe-eval'"}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
-  // data: is needed by the OG card: satori inlines the logo as a data URI.
+  // data: is needed by the OG card, which inlines the logo as a data URI.
   "font-src 'self' data:",
-  // ws: is DEV ONLY: the HMR socket.
+  // ws: is added outside production only, for the HMR socket.
   `connect-src 'self'${isProduction ? "" : " ws:"}`,
   "form-action 'self'",
   "frame-ancestors 'none'",
-  // frame-ancestors says who may embed US; frame-src says what WE may embed: nothing.
+  // frame-ancestors controls who may embed this site; frame-src controls what it may embed.
   "frame-src 'none'",
   "base-uri 'self'",
   "object-src 'none'",
@@ -46,9 +44,7 @@ const securityHeaders = [
       "usb=()", "xr-spatial-tracking=()",
     ].join(", "),
   },
-  // HSTS in production only. On http://localhost it does nothing useful and, if a local
-  // service ever shared the hostname over plain HTTP, the browser would refuse it for two
-  // years. The header is what the section 10 table describes; the condition is here.
+  // HSTS is sent in production only.
   ...(isProduction
     ? [ { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" } ]
     : []),
@@ -72,8 +68,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/:path*", headers: securityHeaders },
       {
-        // The CV is regenerated from time to time: revalidate, never cache forever.
-        // It carries a phone number: the site ranks, the PDF does not.
+        // The CV is revalidated rather than cached forever, and is kept out of search indexes.
         source: "/cv/:path*",
         headers: [
           { key: "Cache-Control", value: "public, max-age=0, s-maxage=3600, must-revalidate" },
@@ -81,7 +76,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Generated, content-addressed by name: safe to freeze.
+        // Generated files, content-addressed by name, cached immutably.
         source: "/icons/:path*",
         headers: [ { key: "Cache-Control", value: "public, max-age=31536000, immutable" } ],
       },

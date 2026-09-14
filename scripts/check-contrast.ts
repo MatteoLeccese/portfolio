@@ -1,8 +1,8 @@
 // scripts/check-contrast.ts
-// Verifica que la paleta REAL declarada en src/app/globals.css cumple WCAG AA y 1.4.11 en las
-// combinaciones semánticas que el sitio usa de verdad, en claro y en oscuro. Parsea el propio CSS:
-// no hay valores duplicados que se puedan desincronizar. Sale 1 si alguna combinación exigida baja
-// del mínimo. Las combinaciones marcadas como informativas se miden e imprimen, pero no fallan.
+// Checks the palette declared in src/app/globals.css against WCAG AA and 1.4.11 for the semantic
+// combinations the site actually uses, in light and in dark. It parses the CSS itself, so no
+// value is duplicated here. Exits 1 when a required combination falls below its minimum.
+// Combinations marked informative are measured and printed but never fail the run.
 import { readFileSync } from "node:fs";
 
 type Family = "brand" | "neutral" | "danger";
@@ -22,7 +22,7 @@ interface ContrastCase {
   informative?: boolean;
 }
 
-/* -- oklch -> sRGB, con gamut mapping por reducción de croma ------------------------------- */
+/* -- oklch -> sRGB, with gamut mapping by chroma reduction --------------------------------- */
 
 function oklabToLinearSrgb (lightness: number, a: number, b: number): LinearRgb {
   const l_ = lightness + 0.3963377774 * a + 0.2158037573 * b;
@@ -61,9 +61,8 @@ function oklch (lightness: number, chroma: number, hue: number): Color {
     c = low;
   }
   const raw = oklabToLinearSrgb(lightness, c * Math.cos(radians), c * Math.sin(radians));
-  // Tupla explicita en vez de `as unknown as LinearRgb`. Con noUncheckedIndexedAccess el
-  // resultado de .map() es number[] y el destructuring daria `number | undefined`; la doble
-  // asercion silenciaba exactamente la comprobacion que el flag existe para hacer.
+  // Explicit tuple: .map() returns number[], which under noUncheckedIndexedAccess destructures
+  // to `number | undefined` rather than to LinearRgb.
   const clamp = (channel: number | undefined): number => Math.min(1, Math.max(0, channel ?? 0));
   const linear: LinearRgb = [ clamp(raw[ 0 ]), clamp(raw[ 1 ]), clamp(raw[ 2 ]) ];
   const [ r, g, b ] = linear;
@@ -79,7 +78,7 @@ function ratio (a: Color, b: Color): number {
   return (high + 0.05) / (low + 0.05);
 }
 
-/* -- parseo de globals.css ----------------------------------------------------------------- */
+/* -- globals.css parsing ------------------------------------------------------------------- */
 
 const CSS = readFileSync(new URL("../src/app/globals.css", import.meta.url), "utf8");
 
@@ -95,15 +94,14 @@ function dial (name: string): number {
   return Number(raw);
 }
 
-// Constante de modulo, como PRIMITIVE mas abajo: @stylistic/wrap-regex exige parentesis
-// alrededor de un literal de regex usado como objeto de un miembro, y `eslint .` lintea
-// tambien scripts/ (§4.6). Extraerlo cumple la regla y se lee mejor.
+// Module constant, like PRIMITIVE below: @stylistic/wrap-regex requires parentheses around a
+// regex literal used as the object of a member expression, and scripts/ is linted too.
 const NEUTRAL_FOLLOWS_BRAND = /--neutral-h\s*:\s*var\(--brand-h\)/;
 
 const brandHue = dial("brand-h");
 const neutralHue = NEUTRAL_FOLLOWS_BRAND.test(CSS) ? brandHue : dial("neutral-h");
 
-// El hue de --danger-* se escribe literal en el CSS, así que esta entrada nunca se consulta.
+// The --danger-* hue is written literally in the CSS, so this entry is never read.
 const HUES: Record<Family, number> = { brand: brandHue, neutral: neutralHue, danger: 27 };
 const CHROMA: Record<Family, number> = { brand: dial("brand-c"), neutral: dial("neutral-c"), danger: 1 };
 
@@ -154,7 +152,7 @@ function color (theme: Theme, token: string): Color {
   return resolved;
 }
 
-/* -- combinaciones reales del sitio -------------------------------------------------------- */
+/* -- the combinations the site really uses ------------------------------------------------- */
 
 const CASES: readonly ContrastCase[] = [
   { label: "foreground / background", foreground: "foreground", background: "background", min: 4.5 },

@@ -41,8 +41,6 @@ Every version is exact — no `^`, no `~`, because `npm ci` freezing a verified 
 | Lint / format | `eslint` 9.39.5 — pinned, **not** 10.x — with `eslint-config-next`, `@stylistic/eslint-plugin` 5.10.0 and `eslint-plugin-boundaries` 7.2.0 |
 | Tests | `vitest` 5.0.0 (pure functions, node environment) and `@playwright/test` 1.63.0 (everything with a DOM) |
 
-The reason behind each pin, including the two expiry-dated ones, is section 4.2 of the plan.
-
 ## Requirements
 
 - **Node >= 22.18.0** (that is what `engines.node` declares, so a 22 LTS machine is not blocked).

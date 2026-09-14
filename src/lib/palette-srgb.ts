@@ -1,13 +1,11 @@
 // src/lib/palette-srgb.ts
 /**
- * sRGB renderings of the oklch tokens in globals.css. The oklch value is the
- * source of truth; these exist only for consumers that cannot resolve oklch:
- * satori (next/og), the web app manifest and the CV/e-mail templates.
- * palette-srgb.test.ts keeps them in sync.
+ * sRGB renderings of the oklch tokens in globals.css, for the consumers that cannot resolve
+ * oklch: satori (next/og), the web app manifest and the CV and e-mail templates. The oklch
+ * value is the source of truth and palette-srgb.test.ts keeps the two in sync.
  *
- * This is one of the two declared exceptions to "no literal colour outside globals.css"
- * (the other is the e-mail template of §10). Only layer 2 — the semantic names — is
- * mirrored: layer 1 (brand-700, neutral-200…) lives in CSS and never leaves it.
+ * Only the semantic names are mirrored; the primitive scales (brand-700, neutral-200…) stay
+ * in CSS.
  */
 export const PALETTE_SRGB = {
   light: {
@@ -31,13 +29,10 @@ export const PALETTE_SRGB = {
 } as const;
 
 /**
- * The two values <meta name="theme-color"> can take. Derived from the same object, so a
- * rebrand cannot move the page background without moving the browser chrome with it.
- *
- * It is a separate export, and not a lookup at the call site, because THEME_INIT_SCRIPT
- * (src/lib/theme.ts) interpolates both values into a string at build time and ThemeToggle
- * indexes it with the next theme. This module must NOT import `Theme` from theme.ts: that
- * would close a cycle, since theme.ts already imports this one.
+ * The two values <meta name="theme-color"> can take, each one the page background of its
+ * theme. THEME_INIT_SCRIPT interpolates both into a string at build time and ThemeToggle
+ * indexes this object with the next theme. The key type is written out rather than imported
+ * from theme.ts.
  */
 export const THEME_COLOR_SRGB: { light: string; dark: string; } = {
   light: PALETTE_SRGB.light.background,

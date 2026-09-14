@@ -1,9 +1,9 @@
 // scripts/check-style-rules.ts
-// Guardia de dos reglas duras de portfolio-v3:
-//   1. CERO GRADIENTES en src/**/*.{css,svg,ts,tsx}, public/**/*.svg y messages/*.json.
-//   2. NINGUN COLOR LITERAL fuera de src/app/globals.css (dos excepciones declaradas).
-// Complementa la regla ESLint `no-restricted-syntax`, que solo ve TS/TSX y solo cubre las paradas
-// from-/via-/to- (donde un grep daria falsos positivos). Sale 1 si encuentra algo.
+// Guard for two hard rules:
+//   1. No gradients in src/**/*.{css,svg,ts,tsx}, public/**/*.svg and messages/*.json.
+//   2. No literal colours outside src/app/globals.css (two declared exemptions).
+// Complements the ESLint `no-restricted-syntax` rule, which only sees TS/TSX and only covers the
+// from-/via-/to- stops, where a plain grep would produce false positives. Exits 1 on any finding.
 import { readdirSync, readFileSync } from "node:fs";
 import { join, posix, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -26,8 +26,8 @@ const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const SCAN: readonly { dir: string; extensions: readonly string[]; }[] = [
   { dir: "src", extensions: [ ".css", ".svg", ".ts", ".tsx" ] },
   { dir: "public", extensions: [ ".svg" ] },
-  // messages/ vive en la raiz, no bajo src/, y su copy pasa por t.rich con marcado:
-  // una clase de gradiente dentro de una cadena traducible no la ve nadie mas.
+  // messages/ lives at the root, not under src/, and its copy passes through t.rich with
+  // markup, so a gradient class inside a translatable string is not seen anywhere else.
   { dir: "messages", extensions: [ ".json" ] },
 ];
 
@@ -40,11 +40,8 @@ const COLOR_EXEMPT: readonly string[] = [
 const RULES: readonly Rule[] = [
   { id: "gradient-css-function", pattern: /(?:repeating-)?(?:linear|radial|conic)-gradient\s*\(/, exempt: [] },
   { id: "gradient-legacy-utility", pattern: /(?:^|[^A-Za-z0-9_-])bg-gradient-/, exempt: [] },
-  // CORRECCION sobre §6.6.5: el cierre original era `(?:[^A-Za-z0-9_-]|$)`, que exige que tras
-  // linear/radial/conic venga un caracter que NO sea de palabra. En Tailwind v4 la utilidad
-  // real lleva sufijo de direccion (`bg-linear-to-r`, `bg-conic-180`), asi que el guion la
-  // hacia fallar y el guardia dejaba pasar el gradiente mas comun de todos. Con el lookahead
-  // negativo solo de [A-Za-z0-9_] el sufijo cuenta como cierre valido y `bg-linears` no.
+  // The closing lookahead excludes only [A-Za-z0-9_], so the Tailwind v4 direction suffixes
+  // (`bg-linear-to-r`, `bg-conic-180`) still match while `bg-linears` does not.
   { id: "gradient-utility", pattern: /(?:^|[^A-Za-z0-9_-])(?:bg|mask|border)-(?:linear|radial|conic)(?![A-Za-z0-9_])/, exempt: [] },
   { id: "gradient-mask-edge", pattern: /(?:^|[^A-Za-z0-9_-])mask-[tblrxy]-(?:from|to)-/, exempt: [] },
   { id: "gradient-clip-text-utility", pattern: /(?:^|[^A-Za-z0-9_-])bg-clip-text(?:[^A-Za-z0-9_-]|$)/, exempt: [] },

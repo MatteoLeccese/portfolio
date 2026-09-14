@@ -2,14 +2,13 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
-  // Resolves the "@/*" alias from tsconfig.json. Without this plugin no test that
-  // imports the "@/" alias can even load.
+  // Resolves the "@/*" alias declared in tsconfig.json.
   plugins: [ tsconfigPaths() ],
   test: {
-    // Node, not jsdom: nothing under test touches the DOM (see 12.3).
+    // Node environment: nothing under test touches the DOM.
     environment: "node",
-    // Unit tests are *.test.ts inside src/. Playwright specs are tests/e2e/*.spec.ts
-    // and must never be picked up by Vitest.
+    // Unit tests are *.test.ts under src/. Playwright specs live in tests/e2e and are
+    // outside this glob.
     include: [ "src/**/*.test.ts" ],
     restoreMocks: true,
     reporters: process.env.CI === undefined ? [ "default" ] : [ "default", "github-actions" ],

@@ -8,15 +8,13 @@ import en from "../../messages/en.json";
 import es from "../../messages/es.json";
 
 /**
- * The eight invariants of §8.9. `src/global.d.ts` types the keys against en.json and does not
- * see three real failures: a key missing from es.json (next-intl falls back in silence), t.rich
- * tags that diverge between languages (that THROWS at runtime) and code calling a key that
- * exists in neither catalogue (renders the literal key in production).
+ * The catalogue invariants. `src/global.d.ts` types the keys against en.json and does not
+ * see three real failures: a key missing from es.json (next-intl falls back in silence),
+ * t.rich tags that diverge between languages (that THROWS at runtime) and code calling a
+ * key that exists in neither catalogue (renders the literal key in production).
  *
- * Nota de transcripción: §8.9 escribe `match[ 1 ]` sin más, y `noUncheckedIndexedAccess`
- * (tsconfig, §4.3) tipa eso como `string | undefined`. Los `?? ""` y los guardas de
- * `undefined` de abajo son la corrección mínima para que el fichero compile; no cambian
- * el comportamiento, porque un grupo de captura obligatorio siempre casa.
+ * The `?? ""` and the `undefined` guards below satisfy `noUncheckedIndexedAccess`; a
+ * mandatory capture group always matches, so they never change what the checks report.
  */
 
 type MessageTree = { [ key: string ]: string | MessageTree; };
@@ -78,8 +76,8 @@ function richTags (message: string): string[] {
   return [ ...message.matchAll(/<\/?([a-zA-Z][\w-]*)>/g) ].map((match) => match[ 1 ] ?? "").sort();
 }
 
-// Constantes de modulo: @stylistic/wrap-regex prohibe usar un literal de regex como
-// objeto de un member expression sin parentesis.
+// Module constants: @stylistic/wrap-regex forbids a regex literal as the object of a
+// member expression without parentheses.
 const SOURCE_FILE = /\.tsx?$/;
 const TEST_FILE = /\.test\.tsx?$/;
 
@@ -101,9 +99,8 @@ const NAMESPACE_BINDING =
 
 /**
  * Keys the regex scanner cannot see, because the code builds them at runtime or reads
- * them as plain properties of the imported JSON. Listed by hand, which is the whole
- * point: this array is the ONLY place a key can hide from both directions of the check.
- * Adding an entry here is a decision someone has to write down and a reviewer can see.
+ * them as plain properties of the imported JSON. Listed by hand: this array is the only
+ * place a key can hide from both directions of the check.
  */
 const DYNAMIC_KEYS = [
   // LocaleSwitcher calls t(locale) and t("switchTo", { language: t(locale) }).
@@ -246,17 +243,13 @@ describe("message catalogues", () => {
   });
 
   /*
-   * The mirror of "only calls keys that exist". Without it, a key whose consumer is
-   * deleted stays in both catalogues for ever: dead copy that someone keeps translating.
+   * The mirror of "only calls keys that exist": without it, a key whose consumer is
+   * deleted stays in both catalogues for ever as dead copy that someone keeps translating.
    *
-   * SKIPPED UNTIL PHASE 6 (§14.6). The catalogue is complete from phase 2, but its
-   * consumers are not: the home page, its sections, the header, the footer, the contact
-   * form and the CV template arrive in later phases, so today almost every one of the 138
-   * keys would be reported as an orphan, and the only way to keep the suite green would be
-   * to delete copy that is already final. Phase 6 closes the home page — that is when this
-   * flips back to `it()` and the check becomes real. Do not re-enable it earlier, and do
-   * not "fix" it by moving keys into DYNAMIC_KEYS: that list is for keys the static scanner
-   * CANNOT see, not for keys whose consumer has not been written yet.
+   * Skipped while the catalogue's consumers are still being written: the catalogue is
+   * complete, the pages that read it are not, so almost every key would be reported as an
+   * orphan today. DYNAMIC_KEYS is for keys the static scanner cannot see, not for keys
+   * whose consumer does not exist yet.
    */
   it.skip("has no key that nobody calls", () => {
     const called = new Set(DYNAMIC_KEYS);

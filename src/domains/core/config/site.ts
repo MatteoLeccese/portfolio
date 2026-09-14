@@ -2,11 +2,8 @@
 import type { Locale, YearMonth } from "@/domains/core/types";
 
 /**
- * Identity and canonical configuration. The only module allowed to read
- * NEXT_PUBLIC_* variables. Safe to import from a client component.
- *
- * There is no `jobTitle` field on purpose: the current role is derived from the
- * experience model by getJobTitle() (see 9.4).
+ * Identity and canonical configuration. The only module that reads NEXT_PUBLIC_*
+ * variables. Safe to import from a client component.
  */
 
 function readSiteUrl (): string {
@@ -25,13 +22,12 @@ export const SITE = {
   /** Rendered by ContactChannels as the fallback channel. Never obfuscated. */
   email: "matteoleccese2099@gmail.com",
 
-  /** Never published on the site. Rendered only into the CV PDF. See 9.10. */
+  /** Never published on the site. Rendered only into the CV PDF. */
   phone: "+58 424 699 1599",
 
   /**
-   * City level only, and already public on the CV and on LinkedIn. `country` is the ISO
-   * code schema.org expects; `countryName` is what the CV header prints. Nothing derives
-   * one from the other at runtime: a display name is not an ISO code.
+   * City-level location. `country` is the ISO code schema.org expects and `countryName` is
+   * the display name the CV header prints; neither is derived from the other.
    */
   location: { region: "Zulia", country: "VE", countryName: "Venezuela" },
 
@@ -39,7 +35,6 @@ export const SITE = {
   careerStart: "2021-10" satisfies YearMonth,
   github: "https://github.com/MatteoLeccese",
 
-  /** The long form, which is the one we know resolves. See the open questions in 17.5. */
   linkedin: "https://www.linkedin.com/in/matteo-l-65a95b207/",
   logo: "/logo/ml-logo.png",
   cvPath: (locale: Locale): string => `/cv/matteo-leccese-cv-${locale}.pdf`,
@@ -57,9 +52,8 @@ export function deploymentEnv (): DeploymentEnv {
 }
 
 /**
- * Only the production deployment may be indexed. SITE_INDEXABLE is an explicit
- * override for the Lighthouse job, which has to audit production-shaped HTML on
- * a runner where VERCEL_ENV does not exist.
+ * Whether this deployment may be indexed. Only production is indexable, unless
+ * SITE_INDEXABLE is set to "1" or "0", which forces the answer either way.
  */
 export function isIndexable (): boolean {
   if (process.env.SITE_INDEXABLE === "1") return true;
@@ -67,15 +61,10 @@ export function isIndexable (): boolean {
   return deploymentEnv() === "production";
 }
 
-/*
- * The two placeholders of the legal prose (section 8.13). Neither the domain nor the
- * owner's email is written out in the legal content files: they carry `{domain}` and
- * `{ownerEmail}` and are resolved at render time from the single module that knows what
- * they are worth. `legal.test.ts` fails if a literal comes back.
- */
+/** The host of SITE.url. */
 export const SITE_DOMAIN = new URL(SITE.url).host;
 
-/** Resolves the two placeholders legal prose is allowed to contain. */
+/** Replaces `{domain}` and `{ownerEmail}`, the two placeholders legal prose may contain. */
 export function resolveSitePlaceholders (text: string): string {
   return text.replaceAll("{domain}", SITE_DOMAIN).replaceAll("{ownerEmail}", SITE.email);
 }

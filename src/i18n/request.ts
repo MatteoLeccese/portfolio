@@ -4,19 +4,15 @@ import { getRequestConfig } from "next-intl/server";
 import { routing } from "./routing";
 
 /**
- * Per-request i18n configuration.
+ * Per-request i18n configuration: the resolved locale, its message catalogue and a fixed
+ * time zone.
  *
- * The fixed time zone is not cosmetic: `useFormatter().dateTime()` runs on the server at
- * build time and again in the browser on hydration. Without a fixed zone the two runs use
- * different offsets and React reports a hydration mismatch on the legal pages, whose only
- * formatted value is a date.
+ * The time zone is fixed so that `useFormatter().dateTime()` renders the same string on
+ * the server at build time and in the browser on hydration.
  *
- * An unknown locale falls back to the default HERE, and is rejected with notFound() in
- * `app/[locale]/layout.tsx`, which is the only place that can tell a 404 apart from a
- * render outside `[locale]`. This function also runs for `app/not-found.tsx`, where
- * `requestLocale` is undefined by design: calling notFound() here would make the root 404
- * recurse instead of rendering. There is no silent fallback in the routing surface — the
- * proxy already 404s `/fr` — only in the place where it cannot cause one.
+ * An unknown locale falls back to the default here. Rejecting it belongs to
+ * `app/[locale]/layout.tsx`: this function also runs for `app/not-found.tsx`, where
+ * `requestLocale` is undefined by design.
  */
 export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;

@@ -13,12 +13,12 @@ node_modules/
 out/
 build/
 
-# testing
+# tests
 coverage/
 playwright-report/
 test-results/
 
-# env files: a real one is NEVER committed. The two templates are, and only those.
+# environment files: only the two .env.example.* templates are versioned.
 .env*
 !.env.example.*
 
@@ -26,7 +26,7 @@ test-results/
 *.tsbuildinfo
 next-env.d.ts
 
-# debug
+# debugging
 *.log
 npm-debug.log*
 yarn-debug.log*

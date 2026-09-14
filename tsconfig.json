@@ -1,14 +1,11 @@
 {
   "compilerOptions": {
-    // ES2022 instead of the ES2017 inherited from create-next-app: Node 22+ and every target
-    // browser support it, and it enables `.at()`, top-level await and class fields.
     "target": "ES2022",
     "lib": [ "dom", "dom.iterable", "esnext" ],
     "module": "esnext",
     "moduleResolution": "bundler",
     "moduleDetection": "force",
 
-    // The project is 100% TypeScript. `allowJs: false` keeps an untyped .js file from sneaking in.
     "allowJs": false,
     "jsx": "react-jsx",
     "noEmit": true,
@@ -21,11 +18,10 @@
 
     // ── Strictness ───────────────────────────────────────────────────────────
     "strict": true,
-    // The three flags code-style.md requires on top of `strict`:
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    // Extra: array[i] becomes `T | undefined`. Verified NOT to affect Record<Locale, string>.
+    // Indexed access on arrays and records yields `T | undefined`.
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
 

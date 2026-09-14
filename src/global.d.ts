@@ -17,12 +17,9 @@ declare module "next-intl" {
 }
 
 /**
- * simple-icons publishes one named export per icon (siReact, siNextdotjs, ...), and
- * scripts/generate-skill-icons.ts has to look them up by a name it builds at runtime from
- * the slug. TypeScript cannot index a module namespace object with a computed string, and
- * the usual workaround is `as unknown as`, which this project bans (section 12.2).
- * Declaring the shape we actually consume is the honest version of the same escape: it is
- * written down once, in the file whose job is exactly this, and it is reviewed.
+ * Ambient declaration for simple-icons, which publishes one named export per icon
+ * (siReact, siNextdotjs, ...). Types the module as a lookup from export name to icon, so
+ * it can be indexed with a name built at runtime from a slug.
  */
 declare module "simple-icons" {
   interface SimpleIcon {
