@@ -33,7 +33,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    // Single source of truth for the E2E environment: the CI job declares no env vars.
+    // Single source of truth for the E2E environment: every variable the build and the run
+    // need is declared here and nowhere else.
     command: "npm run build && npm run start",
     url: BASE_URL,
     reuseExistingServer: process.env.CI === undefined,

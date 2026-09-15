@@ -6,7 +6,7 @@
     "factRole": "{role}",
     "factRoleNone": "Entre proyectos",
     "paragraphOne": "Soy {role} con {years} años de experiencia construyendo plataformas web escalables y sistemas backend. Actualmente trabajo en tecnología financiera, donde integro proveedores de pago, mantengo el backend financiero central y sus APIs REST, y llevo las aplicaciones hasta producción sobre infraestructura en la nube.",
-    "paragraphThree": "Trabajo a diario con agentes de IAClaude Code y Antigravity— y trato lo que producen como cualquier otra contribución: pasa por la misma especificación, las mismas pruebas y la misma revisión antes de llegar a producción. Vivo en {location} y trabajo en inglés y español.",
+    "paragraphThree": "Trabajo a diario con agentes de IA —Claude Code, sobre todo— y trato lo que producen como cualquier otra contribución: pasa por la misma especificación, las mismas pruebas y la misma revisión antes de llegar a producción. Vivo en {location} y trabajo en inglés y español.",
     "paragraphTwo": "Mi día a día es React, Next.js, PHP y Laravel, con una base de datos relacional debajo. Lo que optimizo es la integridad de los datos, el rendimiento de la base de datos y una arquitectura que el siguiente desarrollador pueda retomar sin que yo esté delante.",
     "title": "Sobre mí"
   },
@@ -57,6 +57,13 @@
       "subjectPlaceholder": "¿De qué se trata?",
       "submit": "Enviar mensaje",
       "submitting": "Enviando…"
+    },
+    "mail": {
+      "body": "El correo es la vía más rápida para localizarme. Cuéntame la vacante, el proyecto o la pregunta, y yo me encargo del resto.",
+      "cta": "Escríbeme",
+      "ctaAria": "Escríbeme a {email}",
+      "note": "El enlace abre tu propia aplicación de correo con mi dirección ya puesta. Nada de lo que escribas pasa por este sitio.",
+      "title": "Envíame un correo"
     },
     "status": {
       "successAgain": "Enviar otro mensaje",
@@ -165,7 +172,7 @@
     "aiPracticeOne": "<term>Especificación antes que código</term> Escribo qué tiene que ser cierto antes de que un agente toque el repositorio, para poder juzgar el resultado en lugar de confiar en él.",
     "aiPracticeThree": "<term>Revisión en cada diff</term> Leo cada línea que entra. Los agentes paralelizan el trabajo; no asumen la responsabilidad.",
     "aiPracticeTwo": "<term>Las pruebas como contrato</term> Las pruebas automatizadas deciden si un cambio llega a producción. Esa regla no cambia según quién, o qué, lo haya escrito.",
-    "aiTooling": "En el día a día: Claude Code, Antigravity y repartir los trabajos grandes entre agentes en paralelo cuando la tarea de verdad se divide.",
+    "aiTooling": "En el día a día: Claude Code y repartir los trabajos grandes entre agentes en paralelo cuando la tarea de verdad se divide.",
     "categoryAi": "Desarrollo asistido por IA",
     "categoryBackend": "Backend",
     "categoryData": "Bases de datos",

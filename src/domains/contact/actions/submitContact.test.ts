@@ -34,6 +34,10 @@ vi.mock("@/domains/contact/services/rate-limit", () => ({
   consumeRateLimit: mocks.consumeRateLimit,
 }));
 
+// The action refuses outright unless the Resend path is enabled, so the suite that covers
+// that path enables it. The refusal itself is covered by its own suite below.
+process.env.NEXT_PUBLIC_USE_RESEND_EMAIL_FORM = "true";
+
 const { submitContact } = await import("@/domains/contact/actions/submitContact");
 
 /** A payload that passes every layer, with the fill-time mark a no-JS browser sends. */

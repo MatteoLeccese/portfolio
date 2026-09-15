@@ -9,7 +9,7 @@ export const experience: readonly ExperienceEntry[] = [
     logo: null,
     role: { en: "Full Stack Developer", es: "Desarrollador Full Stack" },
     startDate: "2026-02",
-    endDate: null,
+    endDate: "2026-09",
     summary: {
       en: "Payment infrastructure for currency-exchange platforms: gateway integrations, the core financial backend, and the releases that put both in production.",
       es: "Infraestructura de pagos para plataformas de cambio de divisas: integraciones de pasarelas, el backend financiero central y las publicaciones que llevan ambos a producción.",

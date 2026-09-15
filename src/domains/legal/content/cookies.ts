@@ -102,11 +102,11 @@ export const cookiePolicy: LegalDocument = {
       body: {
         en: [
           "This site does not use localStorage, sessionStorage, IndexedDB or similar browser storage. The theme preference is kept in the cookie described above and nowhere else.",
-          "Separately from cookies, the server that hosts this site keeps standard technical logs of incoming requests, which include the IP address, the time of the request, the page requested and the browser user agent. These logs are a normal part of running a web server, are used only to keep the site available and secure, and are not combined with the theme cookie or with anything you may send through the contact form. They are covered in the Privacy Policy.",
+          "Separately from cookies, the server that hosts this site keeps standard technical logs of incoming requests, which include the IP address, the time of the request, the page requested and the browser user agent. These logs are a normal part of running a web server, are used only to keep the site available and secure, and are not combined with the theme cookie. They are covered in the Privacy Policy.",
         ],
         es: [
           "Este sitio no utiliza localStorage, sessionStorage, IndexedDB ni almacenamiento similar del navegador. La preferencia de tema se guarda en la cookie descrita más arriba y en ningún otro sitio.",
-          "Al margen de las cookies, el servidor que aloja este sitio conserva registros técnicos habituales de las peticiones recibidas, que incluyen la dirección IP, la hora de la petición, la página solicitada y el agente de usuario del navegador. Estos registros forman parte normal del funcionamiento de un servidor web, se usan únicamente para mantener el sitio disponible y seguro, y no se combinan con la cookie de tema ni con lo que puedas enviar a través del formulario de contacto. Se explican en la Política de Privacidad.",
+          "Al margen de las cookies, el servidor que aloja este sitio conserva registros técnicos habituales de las peticiones recibidas, que incluyen la dirección IP, la hora de la petición, la página solicitada y el agente de usuario del navegador. Estos registros forman parte normal del funcionamiento de un servidor web, se usan únicamente para mantener el sitio disponible y seguro, y no se combinan con la cookie de tema. Se explican en la Política de Privacidad.",
         ],
       },
     },

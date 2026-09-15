@@ -32,15 +32,14 @@ describe("getExperienceTimeline", () => {
     expect(experience.map((entry) => entry.id)).toEqual(ORDER);
   });
 
-  it("derives isCurrent from the missing end date, for exactly one position", () => {
+  it("derives isCurrent from the missing end date, and no position has one", () => {
     const timeline = getExperienceTimeline("en", PRESENT.en, TODAY);
-    expect(timeline.filter((entry) => entry.isCurrent).map((entry) => entry.id))
-      .toEqual([ "flusso-dynamics-group" ]);
+    expect(timeline.filter((entry) => entry.isCurrent).map((entry) => entry.id)).toEqual([]);
   });
 
   it("formats the period and the duration of every position, in English", () => {
     const timeline = getExperienceTimeline("en", PRESENT.en, TODAY);
-    expect(find(timeline, "flusso-dynamics-group").periodLabel).toBe("Feb 2026 – Present");
+    expect(find(timeline, "flusso-dynamics-group").periodLabel).toBe("Feb 2026 – Sep 2026");
     expect(find(timeline, "flusso-dynamics-group").durationLabel).toBe("8 months");
     expect(find(timeline, "bitnat").periodLabel).toBe("Dec 2023 – Jul 2025");
     expect(find(timeline, "bitnat").durationLabel).toBe("1 year and 8 months");
@@ -52,7 +51,7 @@ describe("getExperienceTimeline", () => {
 
   it("formats the period and the duration of every position, in Spanish", () => {
     const timeline = getExperienceTimeline("es", PRESENT.es, TODAY);
-    expect(find(timeline, "flusso-dynamics-group").periodLabel).toBe("Feb 2026 – Presente");
+    expect(find(timeline, "flusso-dynamics-group").periodLabel).toBe("Feb 2026 – Sept 2026");
     expect(find(timeline, "flusso-dynamics-group").durationLabel).toBe("8 meses");
     expect(find(timeline, "bitnat").periodLabel).toBe("Dic 2023 – Jul 2025");
     expect(find(timeline, "bitnat").durationLabel).toBe("1 año y 8 meses");
@@ -62,13 +61,10 @@ describe("getExperienceTimeline", () => {
     expect(find(timeline, "servieduca").durationLabel).toBe("1 año y 5 meses");
   });
 
-  it("uses the injected present label and nothing else", () => {
+  it("keeps the present label out of every finished position", () => {
     const timeline = getExperienceTimeline("en", "STILL HERE", TODAY);
-    const current = find(timeline, "flusso-dynamics-group");
-    expect(current.periodLabel).toBe("Feb 2026 – STILL HERE");
 
-    // Only the ongoing position may carry the label.
-    for (const entry of timeline.filter((candidate) => !candidate.isCurrent)) {
+    for (const entry of timeline) {
       expect(entry.periodLabel, `"${entry.id}" leaked the present label`).not.toContain("STILL HERE");
     }
   });
@@ -113,18 +109,14 @@ describe("getExperienceTimeline", () => {
     expect(JSON.stringify(experience)).toBe(before);
   });
 
-  it("only lets `now` move the ongoing position", () => {
-    // `now` defaults to the real clock, so the default is asserted only on finished
-    // positions, which carry both endpoints in the data.
+  it("does not move with the clock while every position carries both endpoints", () => {
     const pinned = getExperienceTimeline("en", PRESENT.en, TODAY);
     const ambient = getExperienceTimeline("en", PRESENT.en);
-
-    for (const entry of ambient.filter((candidate) => !candidate.isCurrent)) {
-      expect(entry, `"${entry.id}" moved with the clock`).toEqual(find(pinned, entry.id));
-    }
-
     const later = getExperienceTimeline("en", PRESENT.en, new Date("2027-01-14T00:00:00Z"));
-    expect(find(later, "flusso-dynamics-group").durationLabel).toBe("1 year");
-    expect(find(later, "flusso-dynamics-group").periodLabel).toBe("Feb 2026 – Present");
+
+    for (const entry of pinned) {
+      expect(find(ambient, entry.id), `"${entry.id}" moved with the ambient clock`).toEqual(entry);
+      expect(find(later, entry.id), `"${entry.id}" moved with a later clock`).toEqual(entry);
+    }
   });
 });

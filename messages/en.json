@@ -6,7 +6,7 @@
     "factRole": "{role}",
     "factRoleNone": "Between roles",
     "paragraphOne": "I'm a {role} with {years} years of experience building scalable web platforms and backend systems. I currently work in financial technology, where I integrate payment providers, maintain the core financial backend and its REST APIs, and take applications all the way to production on cloud infrastructure.",
-    "paragraphThree": "I work with AI agents every day Claude Code and Antigravity and I treat what they produce like any other contribution: it goes through the same specification, the same tests and the same review before it ships. I'm based in {location} and I work in English and Spanish.",
+    "paragraphThree": "I work with AI agents every day — Claude Code, above all — and I treat what they produce like any other contribution: it goes through the same specification, the same tests and the same review before it ships. I'm based in {location} and I work in English and Spanish.",
     "paragraphTwo": "My day to day is React, Next.js, PHP and Laravel, with a relational database underneath. What I optimize for is data integrity, database performance, and an architecture the next developer can pick up without me in the room.",
     "title": "About me"
   },
@@ -57,6 +57,13 @@
       "subjectPlaceholder": "What is this about?",
       "submit": "Send message",
       "submitting": "Sending…"
+    },
+    "mail": {
+      "body": "Email is the fastest way to reach me. Tell me about the role, the project or the question, and I'll take it from there.",
+      "cta": "Write to me",
+      "ctaAria": "Write to me at {email}",
+      "note": "The link opens your own mail app with my address already in place. Nothing you write passes through this site.",
+      "title": "Send me an email"
     },
     "status": {
       "successAgain": "Send another message",
@@ -165,7 +172,7 @@
     "aiPracticeOne": "<term>Spec before code</term> I write down what has to be true before an agent touches the repository, so the output can be judged instead of trusted.",
     "aiPracticeThree": "<term>Review on every diff</term> I read every line that goes in. Agents parallelise the work; they do not take over the responsibility.",
     "aiPracticeTwo": "<term>Tests as the contract</term> Automated tests decide whether a change ships. That rule does not change depending on who, or what, wrote it.",
-    "aiTooling": "Day to day: Claude Code, Antigravity, and splitting larger jobs across parallel agents when the work genuinely divides.",
+    "aiTooling": "Day to day: Claude Code, and splitting larger jobs across parallel agents when the work genuinely divides.",
     "categoryAi": "AI-assisted development",
     "categoryBackend": "Backend",
     "categoryData": "Databases",

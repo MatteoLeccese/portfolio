@@ -1,0 +1,53 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "npm run start",
+      "startServerReadyPattern": "Ready in",
+      "startServerReadyTimeout": 60000,
+      "url": [
+        "http://127.0.0.1:3200/",
+        "http://127.0.0.1:3200/es",
+        "http://127.0.0.1:3200/privacy"
+      ],
+      "numberOfRuns": 3,
+      "settings": {
+        "formFactor": "mobile",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "throttlingMethod": "simulate",
+        "skipAudits": [ "canonical" ]
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": [ "error", { "minScore": 0.95 } ],
+        "categories:accessibility": [ "error", { "minScore": 1 } ],
+        "categories:best-practices": [ "error", { "minScore": 0.95 } ],
+        "categories:seo": [ "error", { "minScore": 1 } ],
+
+        "largest-contentful-paint": [ "error", { "maxNumericValue": 2500 } ],
+        "cumulative-layout-shift": [ "error", { "maxNumericValue": 0.1 } ],
+        "total-blocking-time": [ "error", { "maxNumericValue": 200 } ],
+        "first-contentful-paint": [ "warn", { "maxNumericValue": 1200 } ],
+        "speed-index": [ "warn", { "maxNumericValue": 2000 } ],
+
+        "font-display-insight": [ "error", { "minScore": 1 } ],
+        "unsized-images": [ "error", { "minScore": 1 } ],
+        "image-delivery-insight": [ "warn", { "minScore": 1 } ],
+        "unused-javascript": [ "warn", { "maxNumericValue": 30000 } ],
+
+        "resource-summary:script:size": [ "error", { "maxNumericValue": 395000 } ],
+        "resource-summary:stylesheet:size": [ "error", { "maxNumericValue": 20000 } ],
+        "resource-summary:font:size": [ "error", { "maxNumericValue": 46000 } ],
+        "resource-summary:image:size": [ "error", { "maxNumericValue": 120000 } ],
+        "resource-summary:total:size": [ "error", { "maxNumericValue": 540000 } ]
+      }
+    },
+    "upload": { "target": "filesystem", "outputDir": ".lighthouseci" }
+  }
+}

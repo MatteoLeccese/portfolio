@@ -1,9 +1,9 @@
 <!-- scripts/prepare-fonts.md -->
 # Preparing the Montserrat files
 
-Documentation, **not an executable script**: the procedure needs `python3` + `fonttools`, which
-neither CI nor the Dockerfile installs, plus a one-off download from Google Fonts. It is run by
-hand, locally, and **only** when the font version is bumped. The resulting files are committed.
+Documentation, **not an executable script**: the procedure needs `python3` + `fonttools`, which the
+Dockerfile does not install, plus a one-off download from Google Fonts. It is run by hand, locally,
+and **only** when the font version is bumped. The resulting files are committed.
 
 The site's typeface is **Montserrat**, and it is used across **the whole page** — body copy and
 headings alike — not only in titles. There is no second family.
@@ -12,9 +12,9 @@ headings alike — not only in titles. There is no second family.
 Montserrat is 745 KB as TTF, so what reaches the browser has to be a subset prepared beforehand.
 Hence this document.
 
-The project **does not use `next/font/google`**: that would make every build (CI and Vercel) depend
-on the network and on Google answering, and it ends up self-hosting the file anyway. The file is
-downloaded once, by hand, and versioned. The cost is this manual procedure.
+The project **does not use `next/font/google`**: that would make every build depend on the network
+and on Google answering, and it ends up self-hosting the file anyway. The file is downloaded once, by
+hand, and versioned. The cost is this manual procedure.
 
 ---
 
@@ -54,7 +54,7 @@ punctuation, which is what the site needs.
 ## 2. Where each file came from
 
 A one-off download, authorised by the site owner. It is the **only** time the project touches the
-network for this: neither the build nor CI ever does it again.
+network for this: the build never does it again.
 
 ### 2.1 The `.woff2` that is served
 

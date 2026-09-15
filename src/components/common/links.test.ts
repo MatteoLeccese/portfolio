@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { opensInNewTab } from "@/components/common/ExternalLink";
+import { SITE } from "@/domains/core/config/site";
 
 /**
  * Guards for the three link components. Vitest runs on the `node` environment and these
@@ -26,14 +27,14 @@ function code (path: string): string {
 
 describe("opensInNewTab", () => {
   it("is true for the http(s) URLs the site links to", () => {
-    expect(opensInNewTab("https://github.com/MatteoLeccese")).toBe(true);
-    expect(opensInNewTab("https://www.linkedin.com/in/matteo-l-65a95b207/")).toBe(true);
+    expect(opensInNewTab(SITE.github)).toBe(true);
+    expect(opensInNewTab(SITE.linkedin)).toBe(true);
   });
 
   it("is false for the schemes that hand off to another application", () => {
     // A mailto: opens a composer, not a tab: target, rel and the "new tab" suffix would
     // all be lies, and the suffix is read out to every screen-reader user.
-    expect(opensInNewTab("mailto:matteoleccese2099@gmail.com")).toBe(false);
+    expect(opensInNewTab(`mailto:${SITE.email}`)).toBe(false);
     expect(opensInNewTab("tel:+584246991599")).toBe(false);
   });
 

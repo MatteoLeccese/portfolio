@@ -15,6 +15,7 @@ import {
   type ContactValuesEcho,
 } from "@/domains/contact/types";
 import { contactPayloadSchema } from "@/domains/contact/types/schema";
+import { USE_RESEND_EMAIL_FORM } from "@/domains/core/config/site";
 
 /** The first comma-separated entry of a header value, trimmed, or null when it is empty. */
 function firstValue (raw: string | null): string | null {
@@ -127,7 +128,8 @@ async function handleSubmit (previous: ContactState, formData: FormData): Promis
 }
 
 /**
- * Validates one submission from scratch and relays it by email.
+ * Validates one submission from scratch and relays it by email. Refuses before reading
+ * any request data when NEXT_PUBLIC_USE_RESEND_EMAIL_FORM is not "true".
  *
  * Nothing the client checked is trusted: the payload is parsed again here. Every
  * rejection returns a `Contact.errors` code, never a sentence, and carries the submitted
@@ -137,6 +139,8 @@ export async function submitContact (
   previous: ContactState,
   formData: FormData,
 ): Promise<ContactState> {
+  if (!USE_RESEND_EMAIL_FORM) return failure(previous, formData, "internal_error");
+
   try {
     return await handleSubmit(previous, formData);
   } catch (cause: unknown) {

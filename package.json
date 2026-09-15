@@ -20,8 +20,7 @@
     "check:contrast": "tsx scripts/check-contrast.ts",
     "check": "npm run typecheck && npm run lint && npm run check:style && npm run check:contrast && npm run test",
     "icons:skills": "tsx scripts/generate-skill-icons.ts",
-    "icons:brand": "tsx scripts/generate-brand-icons.ts",
-    "cv": "tsx scripts/generate-cv.ts"
+    "icons:brand": "tsx scripts/generate-brand-icons.ts"
   },
   "dependencies": {
     "@base-ui/react": "1.8.0",
