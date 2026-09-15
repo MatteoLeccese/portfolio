@@ -1,15 +1,28 @@
 // src/app/[locale]/page.tsx
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { NAV_SECTION_IDS, type SectionId } from "@/domains/core/config/navigation";
+
+import { Reveal } from "@/components/motion/Reveal";
+import { ContactSection } from "@/domains/contact/components/ContactSection";
 import { SITE } from "@/domains/core/config/site";
 import type { Locale } from "@/domains/core/types";
+import { yearsOfExperienceAt } from "@/domains/core/utils/period";
+import { EducationSection } from "@/domains/education/components/EducationSection";
+import { ExperienceSection } from "@/domains/experience/components/ExperienceSection";
+import { experience } from "@/domains/experience/content/experience";
+import { AboutSection } from "@/domains/profile/components/AboutSection";
+import { HeroSection } from "@/domains/profile/components/HeroSection";
+import { getCurrentPosition } from "@/domains/profile/queries/getCurrentPosition";
+import { getJobTitle } from "@/domains/profile/queries/getJobTitle";
+import { ProjectsSection } from "@/domains/projects/components/ProjectsSection";
+import { SkillsSection } from "@/domains/skills/components/SkillsSection";
 import { routing } from "@/i18n/routing";
 
 /**
- * The one-page home: seven <section> elements in the order of SECTION_IDS, each with its
- * id, its landmark and its heading. The outline is the one axe, the scroll spy and screen
- * readers read: a single <h1>, an <h2> per section with no level skipped, and an
- * aria-labelledby on every <section> pointing at its own heading.
+ * The one-page home: the seven sections of SECTION_IDS, in that order.
+ *
+ * The locale, the ongoing position and the years figure are resolved once here and passed
+ * down as props. Each anchor id lives on exactly one element: the hero writes it on its
+ * own <section>, the other six write it on their SectionHeading.
  *
  * It declares no metadata and inherits the layout's, which already is the home's.
  */
@@ -20,53 +33,62 @@ export function generateStaticParams () {
 }
 
 /**
- * The six section titles, by section id. The hero is absent: its <h1> is the owner's
- * name and not a `<Namespace>.title` key. NAV_SECTION_IDS is SECTION_IDS minus the hero,
- * so adding a section without a title here is a type error.
+ * Seconds a prerendered home stays valid. Every fact this page derives from the clock —
+ * the years of experience, the duration of the current position, the copyright year — is
+ * recomputed on each re-render.
  */
-const SECTION_TITLE_KEY = {
-  about: "About.title",
-  skills: "Skills.title",
-  experience: "Experience.title",
-  education: "Education.title",
-  projects: "Projects.title",
-  contact: "Contact.title",
-} as const satisfies Record<Exclude<SectionId, "hero">, string>;
+export const revalidate = 86_400;
 
 export default async function HomePage ({
   params,
 }: {
-  // `Locale` and not `string`: the layout has already turned anything else away with
-  // notFound() by the time this page renders.
   params: Promise<{ locale: Locale; }>;
 }) {
   const { locale } = await params;
 
   setRequestLocale(locale);
 
-  /*
-   * Read from the root of the catalogue rather than with a namespace: the six titles
-   * live in six different namespaces. The locale is already fixed by setRequestLocale
-   * above.
-   */
-  const t = await getTranslations();
+  const t = await getTranslations("Hero");
+
+  // The ongoing position, or null while there is none, and the role and employer it names.
+  const current = getCurrentPosition(experience);
+  const role = getJobTitle(current, locale);
+  const company = current?.company ?? null;
+
+  const years = yearsOfExperienceAt(SITE.careerStart, new Date());
+
+  const heroRole = company === null
+    ? t("betweenRoles")
+    : t("currentRole", { role, company });
 
   return (
     <>
-      <section id="hero" aria-labelledby="hero-title" className="container-page section-y">
-        <h1 id="hero-title" className="text-display text-foreground">{SITE.name}</h1>
-      </section>
+      <HeroSection
+        greeting={t("greeting")}
+        headline={t("headline")}
+        locale={locale}
+        name={SITE.name}
+        primaryCta={t("primaryCta")}
+        role={heroRole}
+        scrollCue={t("scrollCue")}
+        secondaryCta={t("secondaryCta")}
+        summary={t("summary", { years })}
+      />
 
-      {NAV_SECTION_IDS.map((id) => (
-        <section
-          key={id}
-          id={id}
-          aria-labelledby={`${id}-title`}
-          className="container-page section-y"
-        >
-          <h2 id={`${id}-title`} className="text-h2 text-foreground">{t(SECTION_TITLE_KEY[ id ])}</h2>
-        </section>
-      ))}
+      <AboutSection company={company} role={role} years={years} />
+
+      <SkillsSection />
+
+      <ExperienceSection locale={locale} />
+
+      <EducationSection locale={locale} />
+
+      <ProjectsSection locale={locale} />
+
+      {/* The reveal of the Contact section, which declares no animation of its own. */}
+      <Reveal>
+        <ContactSection />
+      </Reveal>
     </>
   );
 }

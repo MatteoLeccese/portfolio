@@ -3,12 +3,12 @@
     "factExperience": "{years} years of experience",
     "factLanguages": "English and Spanish",
     "factLocation": "Based in {location}",
-    "factRole": "{role} @ {company}",
+    "factRole": "{role}",
     "factRoleNone": "Between roles",
     "paragraphOne": "I'm a {role} with {years} years of experience building scalable web platforms and backend systems. I currently work in financial technology, where I integrate payment providers, maintain the core financial backend and its REST APIs, and take applications all the way to production on cloud infrastructure.",
     "paragraphThree": "I work with AI agents every day Claude Code and Antigravity and I treat what they produce like any other contribution: it goes through the same specification, the same tests and the same review before it ships. I'm based in {location} and I work in English and Spanish.",
-    "paragraphTwo": "My day to day is React, Next.js, Node.js and NestJS on one side, PHP and Laravel on the other, with a relational database underneath. What I optimise for is data integrity, database performance, and an architecture the next developer can pick up without me in the room.",
-    "subtitle": "The short version.",
+    "paragraphTwo": "My day to day is React, Next.js, PHP and Laravel, with a relational database underneath. What I optimize for is data integrity, database performance, and an architecture the next developer can pick up without me in the room.",
+    "subtitle": "",
     "title": "About me"
   },
   "Common": {
@@ -97,13 +97,13 @@
   },
   "Hero": {
     "betweenRoles": "Between roles open to what's next.",
-    "currentRole": "{role} at {company}",
+    "currentRole": "{role}",
     "greeting": "Hi, I'm",
     "headline": "I build web platforms and backend systems that hold up in production.",
     "primaryCta": "Get in touch",
     "scrollCue": "Scroll to the About section",
     "secondaryCta": "See my experience",
-    "summary": "{years} years across React, Next.js, Node.js, NestJS, PHP and Laravel currently in fintech, where payment integrations, monetary precision and data integrity are not optional."
+    "summary": "{years} years across React, Next.js, Node.js, NestJS, PHP and Laravel currently working in fintech, where payment integrations, monetary precision and data integrity are the top priority."
   },
   "Legal": {
     "backToHome": "Back to home",
