@@ -8,7 +8,6 @@
     "paragraphOne": "Soy {role} con {years} años de experiencia construyendo plataformas web escalables y sistemas backend. Actualmente trabajo en tecnología financiera, donde integro proveedores de pago, mantengo el backend financiero central y sus APIs REST, y llevo las aplicaciones hasta producción sobre infraestructura en la nube.",
     "paragraphThree": "Trabajo a diario con agentes de IAClaude Code y Antigravity— y trato lo que producen como cualquier otra contribución: pasa por la misma especificación, las mismas pruebas y la misma revisión antes de llegar a producción. Vivo en {location} y trabajo en inglés y español.",
     "paragraphTwo": "Mi día a día es React, Next.js, PHP y Laravel, con una base de datos relacional debajo. Lo que optimizo es la integridad de los datos, el rendimiento de la base de datos y una arquitectura que el siguiente desarrollador pueda retomar sin que yo esté delante.",
-    "subtitle": "",
     "title": "Sobre mí"
   },
   "Common": {
@@ -108,6 +107,7 @@
   "Legal": {
     "backToHome": "Volver al inicio",
     "cookieTableCaption": "Cookies que este sitio puede guardar",
+    "home": "Inicio",
     "lastUpdated": "Última actualización: {date}",
     "tableCookieDuration": "Duración",
     "tableCookieName": "Nombre",

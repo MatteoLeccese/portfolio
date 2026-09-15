@@ -6,9 +6,12 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { clientMessages } from "@/i18n/client-messages";
-import { DEFAULT_LOCALE, LOCALES } from "@/domains/core/config/locales";
 import { SITE, isIndexable } from "@/domains/core/config/site";
-import type { Locale } from "@/domains/core/types";
+import { buildPageMetadata } from "@/domains/core/seo/metadata";
+import { yearsOfExperienceAt } from "@/domains/core/utils/period";
+import { experience } from "@/domains/experience/content/experience";
+import { getCurrentPosition } from "@/domains/profile/queries/getCurrentPosition";
+import { getJobTitle } from "@/domains/profile/queries/getJobTitle";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import { THEME_COLOR_SRGB } from "@/lib/palette-srgb";
 import { MOTION_BOOT_SCRIPT } from "@/lib/motion/reveal-observer";
@@ -17,43 +20,6 @@ import { ScrollSentinel } from "./_components/ScrollSentinel";
 import { SkipLink } from "./_components/SkipLink";
 import { SiteHeader } from "./_components/SiteHeader";
 import { SiteFooter } from "./_components/SiteFooter";
-
-/**
- * The home route's URLs: absolute, with no trailing slash except on the root, prefixed
- * "as-needed", and an hreflang map holding every locale plus an x-default that points at
- * the default one.
- */
-function absoluteUrl (path: string): string {
-  return path === "/" ? `${SITE.url}/` : `${SITE.url}${path}`;
-}
-
-function localizedHome (locale: Locale): string {
-  return locale === DEFAULT_LOCALE ? "/" : `/${locale}`;
-}
-
-function homeLanguageAlternates (): Record<string, string> {
-  const languages: Record<string, string> = {};
-
-  for (const locale of LOCALES) languages[ locale ] = absoluteUrl(localizedHome(locale));
-  languages[ "x-default" ] = absoluteUrl(localizedHome(DEFAULT_LOCALE));
-
-  return languages;
-}
-
-/**
- * The role string and the experience figure interpolated into the `Meta.title` and
- * `Meta.description` ICU messages. The years are whole years since SITE.careerStart,
- * measured in whole months, rounded, and floored at 1.
- */
-const HOME_ROLE = "Full Stack Developer";
-
-function yearsOfExperience (): number {
-  const start = new Date(`${SITE.careerStart}-01T00:00:00Z`);
-  const now = new Date();
-  const months = (now.getUTCFullYear() - start.getUTCFullYear()) * 12 + (now.getUTCMonth() - start.getUTCMonth());
-
-  return Math.max(1, Math.round(months / 12));
-}
 
 /** Prerenders / and /es at build time. */
 export function generateStaticParams () {
@@ -67,11 +33,11 @@ export const viewport: Viewport = {
 
 /**
  * The home page's metadata, and the only place `metadataBase` and `title.template` are
- * declared. It emits a self-referential canonical, the bidirectional hreflang map with
- * its x-default, and robots directives that follow the site's indexability flag.
+ * declared. buildPageMetadata produces the rest: canonical, the hreflang map with its
+ * x-default, robots directives, Open Graph and the Twitter card.
  *
- * The two legal routes override title, description and alternates with their own
- * generateMetadata; [locale]/page.tsx inherits this one.
+ * The two legal routes replace it with their own generateMetadata; [locale]/page.tsx
+ * inherits this one.
  */
 export async function generateMetadata ({
   params,
@@ -80,22 +46,24 @@ export async function generateMetadata ({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
+
   const t = await getTranslations({ locale, namespace: "Meta" });
+
+  // The role the title and the description interpolate, in the locale they are written in.
+  const role = getJobTitle(getCurrentPosition(experience), locale);
+  const years = yearsOfExperienceAt(SITE.careerStart, new Date());
 
   return {
     metadataBase: new URL(SITE.url),
-    title: {
-      default: t("title", { name: SITE.name, role: HOME_ROLE }),
-      template: `%s · ${SITE.name}`,
-    },
-    description: t("description", { role: HOME_ROLE, years: yearsOfExperience() }),
-    alternates: {
-      canonical: absoluteUrl(localizedHome(locale)),
-      languages: homeLanguageAlternates(),
-    },
-    robots: isIndexable()
-      ? { index: true, follow: true }
-      : { index: false, follow: false, nocache: true },
+    ...buildPageMetadata({
+      locale,
+      route: "/",
+      title: t("title", { name: SITE.name, role }),
+      description: t("description", { role, years }),
+      indexable: isIndexable(),
+      titleTemplate: `%s · ${SITE.name}`,
+      ogType: "profile",
+    }),
   };
 }
 

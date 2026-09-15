@@ -4,30 +4,18 @@ import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-import { DEFAULT_LOCALE, LOCALES } from "@/domains/core/config/locales";
-import { isIndexable, SITE } from "@/domains/core/config/site";
+import { isIndexable } from "@/domains/core/config/site";
+import { buildLegalGraph } from "@/domains/core/seo/graphs";
+import { JsonLd } from "@/domains/core/seo/JsonLd";
+import { buildPageMetadata } from "@/domains/core/seo/metadata";
+import type { LegalRoute } from "@/domains/core/seo/routes";
 import type { Locale } from "@/domains/core/types";
 import { LegalDocumentView } from "@/domains/legal/components/LegalDocumentView";
 import { privacyPolicy } from "@/domains/legal/content/privacy";
 import { routing } from "@/i18n/routing";
 
 /** The path of this route, which is the same English word in every locale. */
-const ROUTE = "/privacy";
-
-/** This route's absolute URL in one locale, prefixed "as-needed" like the router does. */
-function absoluteUrl (locale: Locale): string {
-  return locale === DEFAULT_LOCALE ? `${SITE.url}${ROUTE}` : `${SITE.url}/${locale}${ROUTE}`;
-}
-
-/** Every locale of this route plus an x-default pointing at the default one. */
-function languageAlternates (): Record<string, string> {
-  const languages: Record<string, string> = {};
-
-  for (const locale of LOCALES) languages[ locale ] = absoluteUrl(locale);
-  languages[ "x-default" ] = absoluteUrl(DEFAULT_LOCALE);
-
-  return languages;
-}
+const ROUTE: LegalRoute = "/privacy";
 
 /** Prerenders /privacy and /es/privacy at build time. */
 export function generateStaticParams () {
@@ -35,8 +23,9 @@ export function generateStaticParams () {
 }
 
 /**
- * Title, description and alternates for this route. It overrides the three the layout
- * declares for the home page; `metadataBase` and `title.template` are inherited.
+ * This route's title, description, canonical, hreflang map, robots directives and social
+ * card. It replaces the home metadata the layout declares; `metadataBase` and
+ * `title.template` are inherited.
  */
 export async function generateMetadata ({
   params,
@@ -48,17 +37,13 @@ export async function generateMetadata ({
 
   const t = await getTranslations({ locale, namespace: "Meta" });
 
-  return {
+  return buildPageMetadata({
+    locale,
+    route: ROUTE,
     title: t("privacyTitle"),
     description: t("privacyDescription"),
-    alternates: {
-      canonical: absoluteUrl(locale),
-      languages: languageAlternates(),
-    },
-    robots: isIndexable()
-      ? { index: true, follow: true }
-      : { index: false, follow: false, nocache: true },
-  };
+    indexable: isIndexable(),
+  });
 }
 
 export default async function PrivacyPolicyPage ({
@@ -70,5 +55,21 @@ export default async function PrivacyPolicyPage ({
 
   setRequestLocale(locale);
 
-  return <LegalDocumentView legalDocument={privacyPolicy} locale={locale} />;
+  const meta = await getTranslations({ locale, namespace: "Meta" });
+  const legal = await getTranslations({ locale, namespace: "Legal" });
+
+  return (
+    <>
+      <LegalDocumentView legalDocument={privacyPolicy} locale={locale} />
+
+      {/* The WebPage node of this route and the two-step BreadcrumbList above it. */}
+      <JsonLd
+        graph={buildLegalGraph(locale, ROUTE, {
+          title: meta("privacyTitle"),
+          description: meta("privacyDescription"),
+          homeLabel: legal("home"),
+        })}
+      />
+    </>
+  );
 }

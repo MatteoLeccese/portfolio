@@ -91,7 +91,7 @@ export function AboutSection ({ years, role, company }: AboutSectionProps) {
     {
       id: "role",
       Icon: BriefcaseBusiness,
-      text: company === null ? t("factRoleNone") : t("factRole", { role, company }),
+      text: company === null ? t("factRoleNone") : t("factRole", { role }),
     },
     { id: "location", Icon: MapPin, text: t("factLocation", { location: place }) },
     { id: "languages", Icon: Languages, text: t("factLanguages") },
@@ -103,7 +103,7 @@ export function AboutSection ({ years, role, company }: AboutSectionProps) {
       className="container-page section-y flex flex-col gap-10 md:gap-14"
     >
       <Reveal className="flex flex-col gap-8">
-        <SectionHeading id={SECTION_ID} subtitle={t("subtitle")} title={t("title")} />
+        <SectionHeading id={SECTION_ID} title={t("title")} />
 
         <Prose>
           <p className="text-lead">{t("paragraphOne", { role, years })}</p>

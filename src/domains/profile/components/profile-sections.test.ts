@@ -173,7 +173,7 @@ describe("AboutSection", () => {
   });
 
   it("falls back to the between-roles line when there is no employer", () => {
-    expect(source).toContain(`company === null ? t("factRoleNone") : t("factRole", { role, company })`);
+    expect(source).toContain(`company === null ? t("factRoleNone") : t("factRole", { role })`);
   });
 
   it("hides the decorative icon of every fact", () => {
@@ -279,11 +279,11 @@ describe("the message keys these sections interpolate", () => {
   const PLACEHOLDERS: readonly Placeholders[] = [
     { key: "About.factExperience", read: (m) => m.About.factExperience, names: [ "years" ] },
     { key: "About.factLocation", read: (m) => m.About.factLocation, names: [ "location" ] },
-    { key: "About.factRole", read: (m) => m.About.factRole, names: [ "role", "company" ] },
+    { key: "About.factRole", read: (m) => m.About.factRole, names: [ "role" ] },
     { key: "About.paragraphOne", read: (m) => m.About.paragraphOne, names: [ "role", "years" ] },
     { key: "About.paragraphThree", read: (m) => m.About.paragraphThree, names: [ "location" ] },
     { key: "Common.downloadCvAria", read: (m) => m.Common.downloadCvAria, names: [ "language" ] },
-    { key: "Hero.currentRole", read: (m) => m.Hero.currentRole, names: [ "role", "company" ] },
+    { key: "Hero.currentRole", read: (m) => m.Hero.currentRole, names: [ "role" ] },
     { key: "Hero.summary", read: (m) => m.Hero.summary, names: [ "years" ] },
   ];
 

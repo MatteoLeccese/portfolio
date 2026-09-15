@@ -4,9 +4,12 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Reveal } from "@/components/motion/Reveal";
 import { ContactSection } from "@/domains/contact/components/ContactSection";
 import { SITE } from "@/domains/core/config/site";
+import { buildHomeGraph } from "@/domains/core/seo/graphs";
+import { JsonLd } from "@/domains/core/seo/JsonLd";
 import type { Locale } from "@/domains/core/types";
 import { yearsOfExperienceAt } from "@/domains/core/utils/period";
 import { EducationSection } from "@/domains/education/components/EducationSection";
+import { education } from "@/domains/education/content/education";
 import { ExperienceSection } from "@/domains/experience/components/ExperienceSection";
 import { experience } from "@/domains/experience/content/experience";
 import { AboutSection } from "@/domains/profile/components/AboutSection";
@@ -15,6 +18,7 @@ import { getCurrentPosition } from "@/domains/profile/queries/getCurrentPosition
 import { getJobTitle } from "@/domains/profile/queries/getJobTitle";
 import { ProjectsSection } from "@/domains/projects/components/ProjectsSection";
 import { SkillsSection } from "@/domains/skills/components/SkillsSection";
+import { skillCategories } from "@/domains/skills/content/skills";
 import { routing } from "@/i18n/routing";
 
 /**
@@ -24,7 +28,8 @@ import { routing } from "@/i18n/routing";
  * down as props. Each anchor id lives on exactly one element: the hero writes it on its
  * own <section>, the other six write it on their SectionHeading.
  *
- * It declares no metadata and inherits the layout's, which already is the home's.
+ * It declares no metadata and inherits the layout's, which already is the home's. It
+ * injects the route's own JSON-LD graph: ProfilePage, Person and WebSite.
  */
 
 /** Prerenders / and /es at build time. */
@@ -49,6 +54,7 @@ export default async function HomePage ({
   setRequestLocale(locale);
 
   const t = await getTranslations("Hero");
+  const meta = await getTranslations({ locale, namespace: "Meta" });
 
   // The ongoing position, or null while there is none, and the role and employer it names.
   const current = getCurrentPosition(experience);
@@ -59,7 +65,21 @@ export default async function HomePage ({
 
   const heroRole = company === null
     ? t("betweenRoles")
-    : t("currentRole", { role, company });
+    : t("currentRole", { role });
+
+  // The single degree the CV lists, or null once the entry is removed.
+  const degree = education[ 0 ];
+
+  const graph = buildHomeGraph(locale, {
+    title: meta("title", { name: SITE.name, role }),
+    description: meta("description", { role, years }),
+    jobTitle: role,
+    knowsAbout: skillCategories.flatMap((category) => category.skills.map((skill) => skill.name)),
+    currentEmployer: company,
+    alumniOf: degree === undefined
+      ? null
+      : { name: degree.institution, alternateName: degree.institutionShort },
+  });
 
   return (
     <>
@@ -89,6 +109,8 @@ export default async function HomePage ({
       <Reveal>
         <ContactSection />
       </Reveal>
+
+      <JsonLd graph={graph} />
     </>
   );
 }

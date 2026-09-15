@@ -288,7 +288,7 @@ describe("the hero strings the page resolves", () => {
 
     expect(source).toContain("company === null");
     expect(source).toContain(`t("betweenRoles")`);
-    expect(source).toContain(`t("currentRole", { role, company })`);
+    expect(source).toContain(`t("currentRole", { role })`);
   });
 
   it("gives About the figures rather than a second derivation", async () => {
