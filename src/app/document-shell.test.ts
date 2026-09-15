@@ -107,12 +107,14 @@ describe("which files can write a cookie", () => {
   });
 
   it("never sets a cookie from the server either", async () => {
-    // Three separate spellings: an import of next/headers, a cookies().set() call, and a
-    // Set-Cookie header written by hand.
+    // Three separate spellings: an import of cookies() from next/headers, a
+    // cookies().set() call, and a Set-Cookie header written by hand. The read-only
+    // headers() of the same module is the one thing the contact action needs from it.
     for (const [ name, source ] of await sources()) {
       const body = code(source);
 
-      expect(body, `${name} imports next/headers`).not.toContain("next/headers");
+      expect(body, `${name} imports cookies() from next/headers`)
+        .not.toMatch(/import[^;]*\bcookies\b[^;]*from\s*["'`]next\/headers["'`]/);
       expect(body, `${name} writes a cookie from the server`).not.toMatch(/cookies\(\)\.set\(/);
       expect(body, `${name} writes a Set-Cookie header`).not.toMatch(/["'`]Set-Cookie/i);
     }

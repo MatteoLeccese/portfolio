@@ -1,6 +1,7 @@
 // src/domains/contact/components/ContactChannels.tsx
 import { getTranslations } from "next-intl/server";
 
+import { CopyButton } from "@/components/common/CopyButton";
 import { ExternalLink } from "@/components/common/ExternalLink";
 import { SocialIcon } from "@/components/common/SocialIcon";
 import { SITE } from "@/domains/core/config/site";
@@ -19,6 +20,7 @@ const MAIL_LINK_CLASS = "underline underline-offset-4 decoration-primary/40 hove
  */
 export async function ContactChannels () {
   const t = await getTranslations("Contact.channels");
+  const common = await getTranslations("Common");
 
   return (
     <div className="flex flex-col gap-4">
@@ -30,6 +32,11 @@ export async function ContactChannels () {
           <a className={cn(CHANNEL_LINK_CLASS, MAIL_LINK_CLASS)} href={`mailto:${SITE.email}`}>
             {SITE.email}
           </a>
+          <CopyButton
+            copiedLabel={common("copied")}
+            copyLabel={common("copy")}
+            value={SITE.email}
+          />
         </li>
 
         <li className="flex items-center gap-3">

@@ -4,6 +4,8 @@ import type { ReactNode } from "react";
 
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { ContactChannels } from "@/domains/contact/components/ContactChannels";
+import { ContactForm } from "@/domains/contact/components/ContactForm";
+import { SITE } from "@/domains/core/config/site";
 import { cn } from "@/lib/utils";
 
 interface ContactSectionProps {
@@ -11,7 +13,7 @@ interface ContactSectionProps {
   /**
    * The contact form. It is the slot the form mounts into: with it the section is two
    * columns from `md`, three fifths for the form and two for the channels, and the form
-   * comes first in the DOM. Without it the channels take the single column alone.
+   * comes first in the DOM. It defaults to ContactForm, addressed to the owner.
    */
   readonly form?: ReactNode;
 }
@@ -22,7 +24,9 @@ interface ContactSectionProps {
  *
  * The anchor id lives on SectionHeading, and the section declares no animation of its own.
  */
-export async function ContactSection ({ form }: ContactSectionProps) {
+export async function ContactSection ({
+  form = <ContactForm ownerEmail={SITE.email} />,
+}: ContactSectionProps) {
   const t = await getTranslations("Contact");
   const hasForm = form !== undefined;
 
