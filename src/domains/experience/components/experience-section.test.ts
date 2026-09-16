@@ -328,11 +328,10 @@ describe("the content the section is shaped for", () => {
     }
   });
 
-  it("exercises the initials tile, and only where no logo exists", () => {
+  it("gives every entry a logo, so the initials tile is a fallback and not the norm", () => {
     const withoutLogo = experience.filter((entry) => entry.logo === null);
 
-    expect(withoutLogo.map((entry) => entry.id)).toEqual([ "flusso-dynamics-group" ]);
-    expect(withoutLogo.map((entry) => monogram(entry.company))).toEqual([ "FD" ]);
+    expect(withoutLogo.map((entry) => entry.id)).toEqual([]);
   });
 
   it("gives at least one card more bullets than the disclosure shows at once", () => {

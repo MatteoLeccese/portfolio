@@ -6,7 +6,7 @@ export const experience: readonly ExperienceEntry[] = [
     id: "flusso-dynamics-group",
     company: "Flusso Dynamics Group",
     companyUrl: null,
-    logo: null,
+    logo: "/companies/flusso-logo.png",
     role: { en: "Full Stack Developer", es: "Desarrollador Full Stack" },
     startDate: "2026-02",
     endDate: "2026-09",

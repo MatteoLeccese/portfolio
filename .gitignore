@@ -45,4 +45,3 @@ pnpm-debug.log*
 *.pem
 
 .baseline/
-/documentation/conventions
