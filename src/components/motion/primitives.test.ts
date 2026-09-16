@@ -171,7 +171,7 @@ describe("stagger timing comes from CSS", () => {
 
     expect(reveal).toContain("STAGGER_MAX_ITEMS - 1");
     expect(reveal).toContain("--motion-reveal-index");
-    expect(STAGGER_MAX_ITEMS).toBe(12);
+    expect(STAGGER_MAX_ITEMS).toBe(16);
   });
 
   it("emits the index inline style only when a step is passed", () => {

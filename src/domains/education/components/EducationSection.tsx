@@ -28,7 +28,12 @@ export async function EducationSection ({ locale }: EducationSectionProps) {
 
       <Stagger as="ul" className="mt-10 flex flex-col gap-4" step="base">
         {education.map((entry) => (
-          <EducationItem key={entry.id} entry={entry} locale={locale} />
+          <EducationItem
+            key={entry.id}
+            entry={entry}
+            graduatedLabel={t("graduated", { year: entry.year })}
+            locale={locale}
+          />
         ))}
       </Stagger>
     </section>

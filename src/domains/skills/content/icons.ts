@@ -6,8 +6,8 @@
  */
 export const SIMPLE_ICON_SLUGS = [
   // frontend
-  "typescript", "javascript", "react", "nextdotjs", "angular",
-  "reactivex", "redux", "reacthookform", "tailwindcss", "sass",
+  "typescript", "javascript", "react", "nextdotjs", "angular", "vuedotjs",
+  "reactivex", "redux", "reacthookform", "tailwindcss", "sass", "expo",
   // backend
   "nodedotjs", "nestjs", "express", "php", "laravel", "python",
   // data

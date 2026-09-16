@@ -527,8 +527,12 @@
   [data-stagger] > *:nth-child(10) { --motion-reveal-index: 9; }
   [data-stagger] > *:nth-child(11) { --motion-reveal-index: 10; }
   [data-stagger] > *:nth-child(12) { --motion-reveal-index: 11; }
-  /* Budget cap: from the 13th child on, the delay of the 12th. */
-  [data-stagger] > *:nth-child(n + 13) { --motion-reveal-index: 11; }
+  [data-stagger] > *:nth-child(13) { --motion-reveal-index: 12; }
+  [data-stagger] > *:nth-child(14) { --motion-reveal-index: 13; }
+  [data-stagger] > *:nth-child(15) { --motion-reveal-index: 14; }
+  [data-stagger] > *:nth-child(16) { --motion-reveal-index: 15; }
+  /* Budget cap: from the 17th child on, the delay of the 16th. */
+  [data-stagger] > *:nth-child(n + 17) { --motion-reveal-index: 15; }
 
   [data-stagger="tight"] { --motion-stagger-step: var(--motion-stagger-tight); }
   [data-stagger="base"] { --motion-stagger-step: var(--motion-stagger-base); }

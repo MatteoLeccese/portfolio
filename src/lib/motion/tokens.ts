@@ -32,7 +32,7 @@ export const SPRING_SMOOTH = {
 } as const;
 
 /** Stagger cap. The 13th item and beyond reuse the 12th item's delay. */
-export const STAGGER_MAX_ITEMS = 12;
+export const STAGGER_MAX_ITEMS = 16;
 
 /** Converts milliseconds to seconds, the unit `motion` takes. */
 export function seconds (ms: number): number {
