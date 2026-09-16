@@ -663,12 +663,15 @@ const eslintConfig = defineConfig([
   /*
    * Paths that are not source code. `.baseline/` holds backup copies made with `cp`,
    * including unpatched shadcn primitives that do not satisfy the formatting rules.
+   * `.e2e-contact-form/` is the second application directory playwright.config.ts builds:
+   * its own `.next` beside links to the sources, which are linted where they live.
    */
   globalIgnores([
     ".next/**",
     "out/**",
     "build/**",
     ".baseline/**",
+    ".e2e-contact-form/**",
     "next-env.d.ts",
   ]),
 ]);
