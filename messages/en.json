@@ -80,6 +80,7 @@
     "skills": "Skills"
   },
   "Education": {
+    "graduated": "Graduated {year}",
     "subtitle": "Where the fundamentals came from.",
     "title": "Education"
   },

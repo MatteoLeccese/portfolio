@@ -80,6 +80,7 @@
     "skills": "Habilidades"
   },
   "Education": {
+    "graduated": "Graduado en {year}",
     "subtitle": "De dónde vienen los fundamentos.",
     "title": "Educación"
   },

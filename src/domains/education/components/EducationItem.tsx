@@ -6,6 +6,10 @@ import { localize } from "@/domains/core/utils/localize";
 import type { EducationEntry } from "@/domains/education/types";
 
 interface EducationItemProps {
+
+  /** Already translated, with the year interpolated. */
+  readonly graduatedLabel: string;
+
   readonly entry: EducationEntry;
   readonly locale: Locale;
 }
@@ -17,7 +21,7 @@ interface EducationItemProps {
  * The <li> carries `data-reveal="hidden"`, which the surrounding <Stagger> needs on every
  * direct child. The card is not a link, so it does not carry `card-interactive`.
  */
-export function EducationItem ({ entry, locale }: EducationItemProps) {
+export function EducationItem ({ entry, graduatedLabel, locale }: EducationItemProps) {
   return (
     <li data-reveal="hidden">
       <Card className="gap-4 px-6 md:flex-row md:items-center md:justify-between md:gap-10">
@@ -32,7 +36,7 @@ export function EducationItem ({ entry, locale }: EducationItemProps) {
           <p className="text-meta text-muted-foreground">{entry.location}</p>
         </div>
 
-        <Badge variant="hairline">{entry.year}</Badge>
+        <Badge variant="hairline">{graduatedLabel}</Badge>
       </Card>
     </li>
   );

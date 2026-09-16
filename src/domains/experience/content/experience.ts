@@ -32,7 +32,10 @@ export const experience: readonly ExperienceEntry[] = [
         "Elevé el estándar de ingeniería con pruebas automatizadas, revisión de código y documentación técnica, manteniendo el código mantenible mientras crecían el producto y el equipo.",
       ],
     },
-    stack: [ "NestJS", "Node.js", "Laravel", "PHP", "React", "DigitalOcean" ],
+    stack: [
+      "TypeScript", "Vue.js", "Next.js", "PHP", "Laravel", "PostgreSQL", "DigitalOcean",
+      "Laravel Cloud",
+    ],
   },
   {
     id: "bitnat",
@@ -68,7 +71,10 @@ export const experience: readonly ExperienceEntry[] = [
         "Desarrollé y distribuí aplicaciones de escritorio portables para Windows con Python y SQLite, empaquetadas como ejecutables independientes.",
       ],
     },
-    stack: [ "Laravel", "PHP", "MySQL", "Python", "SQLite" ],
+    stack: [
+      "TypeScript", "Next.js", "React", "Redux", "PHP", "Laravel", "PostgreSQL", "MySQL",
+      "SQLite", "Python",
+    ],
   },
   {
     id: "soustitreur",
@@ -96,7 +102,7 @@ export const experience: readonly ExperienceEntry[] = [
         "Introduje prácticas de depuración y análisis de rendimiento que detectaron problemas técnicos de forma temprana y mejoraron de forma medible la fiabilidad.",
       ],
     },
-    stack: [ "React", "Redux", "PHP", "Slim" ],
+    stack: [ "TypeScript", "Vue.js", "React", "Redux", "PHP", "Slim", "Express" ],
   },
   {
     id: "servieduca",
@@ -124,6 +130,6 @@ export const experience: readonly ExperienceEntry[] = [
         "Optimicé los flujos de trabajo y la depuración de las aplicaciones, identificando cuellos de botella de rendimiento y mejorando la eficiencia y la mantenibilidad del código.",
       ],
     },
-    stack: [ "Angular", "RxJS", "React Native" ],
+    stack: [ "TypeScript", "Angular", "RxJS", "React Native", "Expo" ],
   },
 ];

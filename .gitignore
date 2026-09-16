@@ -45,3 +45,6 @@ pnpm-debug.log*
 *.pem
 
 .baseline/
+
+# the isolated contact-form build playwright.config.ts creates for the E2E run
+.e2e-contact-form/
